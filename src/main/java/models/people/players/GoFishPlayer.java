@@ -18,6 +18,9 @@ public class GoFishPlayer extends Player {
     }
 
     public Integer askForCard(){
+        // player asks for a card from the dealer .. if the card is available in the dealer hand
+        // then pull the card from the dealer
+
         return null;
     }
 
