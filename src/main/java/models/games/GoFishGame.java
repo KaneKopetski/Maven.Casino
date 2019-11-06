@@ -1,13 +1,27 @@
 package models.games;
 
 import Interfaces.Game;
+import models.gamecomponents.Card;
+import models.gamecomponents.CardValue;
+import models.gamecomponents.DeckOfCards;
 import models.people.dealers.Dealer;
 import models.people.players.Player;
+
+
+import java.util.ArrayList;
 
 public class GoFishGame extends CardGame implements Game {
     Player player;
     Dealer dealer;
     Boolean win;
+
+    private DeckOfCards stock = new DeckOfCards();
+    private ArrayList<Card> playerHand = new ArrayList<>();
+    private ArrayList<Card> dealerHand = new ArrayList<>();
+
+    //to store the sets formed by the player and the dealer
+    private ArrayList<CardValue> playerSet = new ArrayList<>();
+    private ArrayList<CardValue> dealerSet = new ArrayList<>();
 
 
 
@@ -16,6 +30,8 @@ public class GoFishGame extends CardGame implements Game {
         this.dealer = dealer;
         win = false;
     }
+
+
 
     public Boolean playerTurn(Player goFishPlayer) {
         return null;
@@ -50,7 +66,7 @@ public class GoFishGame extends CardGame implements Game {
                         "If guessed incorrectly then player goes to fish for the card. (must draw from the Table Deck)" +
                         " If the\ncard drawn from the Table Deck then its the computer's turn." +
                         "The game ends\nif either the Table Deck, User Hand, or Computer" +
-                        " Hand are empty. The \nplayer with the most set (a set is 3 cards of the same value) wins the game" +
+                        " Hand are empty. The \nplayer with the most set (a set is 4 cards of the same value) wins the game" +
                         " \n\t\tPress Enter to start the Game");
                 //need to read the console to check if the user pressed Enter key
                 startGame();
@@ -63,6 +79,31 @@ public class GoFishGame extends CardGame implements Game {
     {
         do
         {
+
+            for(int i = 0; i<7; i++)
+            {
+                Card card;
+                card = stock.drawCard();
+                playerHand.add(card );
+                card = stock.drawCard();
+                dealerHand.add(card);
+            }
+
+            checkDeal(playerHand, 1);
+            checkDeal(dealerHand, 2);
+
+
+            //showing the Players cards
+            for (int i=0; i<playerHand.size() ; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.append("Player has the following Cards in Hand");
+                sb.append(playerHand.get(i).getSuit());
+                sb.append(playerHand.get(i).getCardValue());
+
+                console.print(sb.toString());
+            }
+
             userTurn();
             checkForGameOver();
 
@@ -72,6 +113,43 @@ public class GoFishGame extends CardGame implements Game {
         }while(!win);
 
 
+    }
+
+    public Boolean checkDeal(ArrayList<Card> hand, int playerOrDealer) //CHECKS FOR BOOK ON OPENING DEAL
+    {
+        for(int i = 0; i<4 ; i++)
+        {
+            if(getCount(hand.get(i).getCardValue(), hand) == 4)
+            {
+                if (playerOrDealer == 1)
+                {
+                    playerSet.add(hand.get(i).getCardValue());
+                }
+                else
+                {
+                    dealerSet.add(hand.get(i).getCardValue());
+                }
+                return true;
+                //todo should add this value to some kind array
+
+
+            }
+        }
+        return false;
+    }
+
+    //check for the card if it occurs 4 times within the arraylist
+    public int getCount(CardValue value, ArrayList<Card> hand)
+    {
+        int occurence = 0;
+        for(int i = 0; i< hand.size(); i++)
+        {
+            if( hand.get(i).getCardValue() == value)
+            {
+                occurence++;
+            }
+        }
+        return occurence;
     }
 
     //steps to follow when its player's turn
