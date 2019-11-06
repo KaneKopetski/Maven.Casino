@@ -16,9 +16,7 @@ public class DeckOfCards extends GameComponent {
                 deckOfCards.add(card);
             }
         }
-
     }
-
 
 
     public Boolean addToDeck(Card card) {
@@ -26,9 +24,14 @@ public class DeckOfCards extends GameComponent {
         return true;
     }
 
-    public ArrayList<Card> shuffle(DeckOfCards deck) {
+    public void shuffle() {
         Collections.shuffle(deckOfCards);
-        return deckOfCards;
+    }
+
+    public Card drawCard() {
+        Card card = deckOfCards.get(0);
+        deckOfCards.remove(card);
+        return card;
     }
 
 }
