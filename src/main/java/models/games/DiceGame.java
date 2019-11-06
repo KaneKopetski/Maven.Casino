@@ -23,7 +23,6 @@ abstract class DiceGame {
 
     public void startGame() {
 
-
     }
 
     public Boolean determineWin() {
