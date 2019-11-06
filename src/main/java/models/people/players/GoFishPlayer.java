@@ -19,11 +19,6 @@ public class GoFishPlayer extends Player {
         ps = new PlayerService(goFishPlayer);
     }
 
-    public Integer askForCard(){
-        Integer input = console.getIntegerInput("Which card do you want?");
-
-        return input;
-    }
 
     public Card drawCard() {
         return null;

@@ -112,7 +112,7 @@ public class Lobby {
                 klondikeGame.getMenu();
                 break;
             case 4:
-                CrapsGame crapsGame = new CrapsGame();
+                CrapsGame crapsGame = new CrapsGame(player);
                 crapsGame.getMenu();
                 break;
             case 5:

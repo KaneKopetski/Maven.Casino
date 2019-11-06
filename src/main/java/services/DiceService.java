@@ -6,8 +6,9 @@ import java.util.Random;
 
 public class DiceService {
 
-    public void createDie() {
+    public Dice createDie() {
         Dice dice = new Dice();
+        return dice;
     }
 
     public Integer rollDice(Dice dice) {
@@ -16,9 +17,11 @@ public class DiceService {
         return valueOfDice;
     }
 
-    public void addToHand(Dice dice, Integer valueOfDice, KlondikeHand hand) {
+    public Boolean addToHand(Dice dice, Integer valueOfDice, KlondikeHand hand) {
 
-        hand.addToHand(dice, valueOfDice);
+        hand.addToHand(dice,valueOfDice);
+        //TODO must finish after Kane does hands
+        return false;
 
     }
 

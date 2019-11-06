@@ -9,10 +9,7 @@ public class CrapsPlayer implements GamblingPlayer {
     final Double betAmount;
     PlayerService ps;
 
-
-
     public CrapsPlayer(Player player) {
-
         this.crapsPlayer = player;
         betAmount = 1.0;
         ps = new PlayerService(crapsPlayer);
