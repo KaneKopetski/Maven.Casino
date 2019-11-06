@@ -13,7 +13,6 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
 
     public KlondikeGame(Player player, Dealer klondikeDealer) {
         this.player = player;
-
     }
 
     public String dealerRoll() {
@@ -35,6 +34,7 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
     public void setMinimumBet(Double minimumBet) {
         this.minimumBet = minimumBet;
     }
+
 
 
 }

@@ -10,10 +10,9 @@ public class DiceService {
         Dice dice = new Dice();
     }
 
-    public Integer rollDice(Dice dice) {
+    public Integer rollDice() {
         Random randomNum = new Random();
-        Integer valueOfDice = 1 + randomNum.nextInt(6);
-        return valueOfDice;
+        return 1 + randomNum.nextInt(6);
     }
 
     public void addToHand(Dice dice, Integer valueOfDice, KlondikeHand hand) {
