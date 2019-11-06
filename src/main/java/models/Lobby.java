@@ -1,5 +1,6 @@
 package models;
 
+import models.gamecomponents.DeckOfCards;
 import models.games.BlackjackGame;
 import models.games.CrapsGame;
 import models.games.GoFishGame;
@@ -20,12 +21,25 @@ public class Lobby {
     private String firstName;
     private String lastName;
     private double balance;
+    private DeckOfCards deckOfCards;
 
     public Lobby(PlayerRepo playerRepo){
         this.playerRepo = playerRepo;
     }
 
     public Integer intro() {
+        console.println("      ___           ___           ___           ___                    ___           ___           ___           ___              \n" +
+                "     /\\__\\         /\\  \\         /\\  \\         /\\  \\                  /\\  \\         /\\  \\         /\\  \\         /\\  \\             \n" +
+                "    /:/  /        /::\\  \\       /::\\  \\       /::\\  \\                /::\\  \\       /::\\  \\       /::\\  \\       /::\\  \\            \n" +
+                "   /:/__/        /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\              /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\           \n" +
+                "  /::\\  \\ ___   /::\\~\\:\\  \\   /::\\~\\:\\  \\   /:/  \\:\\__\\            /:/  \\:\\  \\   /:/  \\:\\  \\   /:/  \\:\\__\\   /::\\~\\:\\  \\          \n" +
+                " /:/\\:\\  /\\__\\ /:/\\:\\ \\:\\__\\ /:/\\:\\ \\:\\__\\ /:/__/ \\:|__|          /:/__/ \\:\\__\\ /:/__/ \\:\\__\\ /:/__/ \\:|__| /:/\\:\\ \\:\\__\\         \n" +
+                " \\/__\\:\\/:/  / \\/__\\:\\/:/  / \\/_|::\\/:/  / \\:\\  \\ /:/  /          \\:\\  \\  \\/__/ \\:\\  \\ /:/  / \\:\\  \\ /:/  / \\:\\~\\:\\ \\/__/         \n" +
+                "      \\::/  /       \\::/  /     |:|::/  /   \\:\\  /:/  /            \\:\\  \\        \\:\\  /:/  /   \\:\\  /:/  /   \\:\\ \\:\\__\\           \n" +
+                "      /:/  /        /:/  /      |:|\\/__/     \\:\\/:/  /              \\:\\  \\        \\:\\/:/  /     \\:\\/:/  /     \\:\\ \\/__/           \n" +
+                "     /:/  /        /:/  /       |:|  |        \\::/__/                \\:\\__\\        \\::/  /       \\::/__/       \\:\\__\\             \n" +
+                "     \\/__/         \\/__/         \\|__|         ~~                     \\/__/         \\/__/         ~~            \\/__/             \n" +
+                "                                                                                                                                  ");
         Integer input = console.getIntegerInput("Hello and welcome to the Casino. Have you been here before?\n" +
                 "1. Yes" +
                 "2. No");
@@ -81,13 +95,13 @@ public class Lobby {
         switch (input) {
             case 1:
                 //Dealer dealer = new Dealer();
-                BlackjackDealer blackjackDealer = new BlackjackDealer(firstName, lastName, balance);
+                BlackjackDealer blackjackDealer = new BlackjackDealer(firstName, lastName, balance, deckOfCards);
                 BlackjackGame blackjackGame = new BlackjackGame(player, blackjackDealer);
                 blackjackGame.getMenu();
                 break;
             case 2:
                 //dealer = new Dealer(firstName, lastName, balance);
-                GoFishDealer goFishDealer = new GoFishDealer(firstName, lastName, balance);
+                GoFishDealer goFishDealer = new GoFishDealer(firstName, lastName, balance, deckOfCards);
                 GoFishGame goFishGame = new GoFishGame(player, goFishDealer);
                 goFishGame.getMenu();
                 break;
@@ -98,7 +112,7 @@ public class Lobby {
                 klondikeGame.getMenu();
                 break;
             case 4:
-                CrapsGame crapsGame = new CrapsGame();
+                CrapsGame crapsGame = new CrapsGame(player);
                 crapsGame.getMenu();
                 break;
             case 5:
