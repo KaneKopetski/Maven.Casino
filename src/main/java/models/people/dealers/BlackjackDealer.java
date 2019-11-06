@@ -4,12 +4,16 @@ import models.gamecomponents.Card;
 import models.gamecomponents.DeckOfCards;
 import models.hands.BlackjackHand;
 
+import java.util.ArrayList;
+
 public class BlackjackDealer extends Dealer {
     Dealer blackjackDealer;
     BlackjackHand hand = new BlackjackHand();
+    private DeckOfCards deckOfCards ;
 
-    public BlackjackDealer(String firstName, String lastName, double balance) {
+    public BlackjackDealer(String firstName, String lastName, double balance, DeckOfCards deckOfCards) {
         super(firstName, lastName, balance);
+        this.deckOfCards = deckOfCards;
     }
 
     public Dealer getBlackjackDealer() {
@@ -23,16 +27,10 @@ public class BlackjackDealer extends Dealer {
     }
 
     public Card hit() {
-        return null;
+        return deckOfCards.drawCard();
     }
 
     public Boolean stay() {
-
-        return null;
-    }
-
-    public DeckOfCards shuffle(DeckOfCards deck) {
-
         return null;
     }
 
