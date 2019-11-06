@@ -3,12 +3,14 @@ package models.people.players;
 import models.gamecomponents.Card;
 import models.hands.GoFishHand;
 import services.PlayerService;
+import services.Console;
 
 public class GoFishPlayer extends Player {
     Player goFishPlayer;
     GoFishHand hand = new GoFishHand();
     final Double betAmount;
     PlayerService ps;
+    Console console = new Console(System.in, System.out);
 
     public GoFishPlayer(Player player) {
 
@@ -18,7 +20,9 @@ public class GoFishPlayer extends Player {
     }
 
     public Integer askForCard(){
-        return null;
+        Integer input = console.getIntegerInput("Which card do you want?");
+
+        return input;
     }
 
     public Card drawCard() {
