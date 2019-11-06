@@ -83,10 +83,8 @@ public class Lobby {
     private void menuActions(Integer input) {
         switch (input) {
             case 1:
-                //Dealer dealer = new Dealer();
-                BlackjackDealer blackjackDealer = new BlackjackDealer(firstName, lastName, balance);
-                BlackjackGame blackjackGame = new BlackjackGame(player, blackjackDealer);
-                blackjackGame.getMenu();
+                BlackjackGame blackjackGame = new BlackjackGame(player);
+                blackjackGame.playGame();
                 break;
             case 2:
                 //dealer = new Dealer(firstName, lastName, balance);
