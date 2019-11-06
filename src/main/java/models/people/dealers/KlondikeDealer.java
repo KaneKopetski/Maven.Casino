@@ -1,19 +1,31 @@
 package models.people.dealers;
 
-import models.gamecomponents.Dice;
-import models.hands.KlondikeHand;
+import services.DiceService;
+
+import java.util.ArrayList;
 
 public class KlondikeDealer extends Dealer {
-    Dealer klondikeDealer;
-  //  KlondikeHand hand = new KlondikeHand();
 
-    public KlondikeDealer(String firstName, String lastName, double balance) {
+    private DiceService dice = new DiceService();
+    private ArrayList<Integer> rolls;
 
-        super(firstName, lastName, balance);
+
+    public KlondikeDealer(String firstName, String lastName, Double balance) {
+        super("Seams", "Shaydee", Double.MAX_VALUE);
     }
 
-    public Integer rollDice(Dice dice){
-        return null;
+    public ArrayList<Integer> rollDiceFiveTimes(){
+
+        rolls = new ArrayList<>();
+
+        for(int i = 0; i < 5; i++) {
+            rolls.add(dice.rollDice());
+        }
+        return rolls;
     }
+
+
+
+
 
 }

@@ -11,10 +11,9 @@ public class DiceService {
         return dice;
     }
 
-    public Integer rollDice(Dice dice) {
+    public Integer rollDice() {
         Random randomNum = new Random();
-        Integer valueOfDice = 1 + randomNum.nextInt(6);
-        return valueOfDice;
+        return 1 + randomNum.nextInt(6);
     }
 
     public Boolean addToHand(Dice dice, Integer valueOfDice, KlondikeHand hand) {
