@@ -26,9 +26,14 @@ public class DeckOfCards extends GameComponent {
         return true;
     }
 
-    public ArrayList<Card> shuffle(DeckOfCards deck) {
+    public void shuffle() {
         Collections.shuffle(deckOfCards);
-        return deckOfCards;
+    }
+
+    public Card draw() {
+        Card card = deckOfCards.get(0);
+        deckOfCards.remove(card);
+        return card;
     }
 
 }

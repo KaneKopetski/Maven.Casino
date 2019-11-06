@@ -21,8 +21,11 @@ public class Lobby {
     private String lastName;
     private double balance;
 
-    public Lobby(PlayerRepo playerRepo){
-        this.playerRepo = playerRepo;
+    //public Lobby(PlayerRepo playerRepo){
+        //this.playerRepo = playerRepo;
+  //  }
+
+    public Lobby(){
     }
 
     public Integer intro() {
