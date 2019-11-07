@@ -15,6 +15,7 @@ import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 
 public class BlackjackGame extends CardGame implements Game, GamblingGame {
@@ -57,21 +58,29 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
 
     public void dealCards() {
         deckOfCards.shuffle();
-        for (int i = 0; i < 2; i++) {
-            Card drawnCard = deckOfCards.draw();
-            playerHand.add(drawnCard);
-        }
-        for (int i = 0; i < 2; i++) {
-            Card drawnCard = deckOfCards.draw();
-            dealerHand.add(drawnCard);
-        }
+//        for (int i = 0; i < 2; i++) {
+//            Card drawnCard = deckOfCards.draw();
+//            playerHand.add(drawnCard);
+//        }
+//        for (int i = 0; i < 2; i++) {
+//            Card drawnCard = deckOfCards.draw();
+//            dealerHand.add(drawnCard);
+//        }
+        Card drawnCard = deckOfCards.draw();
+        playerHand.add(drawnCard);
+        drawnCard = deckOfCards.draw();
+        playerHand.add(drawnCard);
+        drawnCard = deckOfCards.draw();
+        dealerHand.add(drawnCard);
+        drawnCard = deckOfCards.draw();
+        dealerHand.add(drawnCard);
     }
 
 
     public void playerHit(){
         Card card = deckOfCards.draw();
         playerHand.add(card);
-        console.print(playerHand.toString());
+        toString();
     }
 
 
@@ -88,36 +97,41 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
 
     public void dealerTurn() {
         Integer dealerHand = getDealerHandValue();
+        System.out.println("dealerHand  " + dealerHand);
             if (dealerHand <= 16) {
                 dealerHit();
 
             } else if (dealerHand > 21) {
-                determineWin();
                 dealerBust = true;
+                determineWin();
 
             } else {
-                determineWin();
                 dealerBust = false;
+                determineWin();
             }
         }
 
     public void playerStay(){
         playerStay = true;
+        dealerTurnLoop();
     }
 
     public Boolean determineWin() {
         Integer dealerHand = getDealerHandValue();
         Integer playerHand = getPlayerHandValue();
-        if (playerHand > dealerHand || dealerBust == true) {
-            console.print("You win!");
+
+        if ((playerHand > dealerHand && playerBust == false) && dealerBust == true) {
+            console.print("You win!\n\n");
             restartGamePrompt();
             return true;
-        } else if (dealerHand > playerHand || playerBust == true) {
-            console.print("You lose!");
+        } else if ((dealerHand > playerHand && dealerBust == false) || playerBust == true) {
+            console.print("You lose!\n\n");
             restartGamePrompt();
             return false;
         } else {
+            System.out.println("No Winners");
             restartGamePrompt();
+
             return false;
         }
     }
@@ -127,7 +141,9 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
         Integer playerHandValue = 0;
         for (Card card : playerHand) {
             playerHandValue += blackJackValue.get(card.getCardValue());
-        } return playerHandValue;
+        }
+        System.out.println("playerHandValue  " + playerHandValue);
+        return playerHandValue;
     }
 
     public Integer getDealerHandValue() {
@@ -156,6 +172,26 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     }
 
 
+    public boolean checkForDealerBust() {
+        if (getDealerHandValue() > 21) {
+            dealerBust = true;
+            return true;
+        } else
+            dealerBust = false;
+            return false;
+    }
+
+
+    public boolean checkForPlayerBust() {
+        if (getPlayerHandValue() > 21) {
+            playerBust = true;
+            return true;
+        } else
+            playerBust = false;
+        return false;
+    }
+
+
     public void getMenu() {
         Integer input2 = console.getIntegerInput(
                 "\nWelcome to the Blackjack table, Do you need instructions for this game?\n\n" +
@@ -166,25 +202,37 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
         menuAction(input2);
     }
 
+    private void exitGame(Integer input2){
+        switch (input2) {
+            case 1:
+                startGame();
+                break;
+
+            default:
+                lobby.selectGameMenu();
+                break;
+
+        }
+    }
+
 
     private void menuAction(Integer input2) {
         switch (input2) {
             case 1:
-                console.print("\nTHE BASIC RULES WHEN PLAYING BLACKJACK:\n\n" +
+                Integer console1 = console.getIntegerInput("\nTHE BASIC RULES WHEN PLAYING BLACKJACK:\n\n" +
                                     "1. Blackjack starts with player making bets.\n" +
                                     "2. Dealer deals 2 cards to the player and two to himself (1 card face up, the other face down).\n" +
                                     "3. Blackjack card values: All cards count their face value in blackjack. Picture cards count as 10 and the ace count as 1.\n" +
                                     "   Card suits have no meaning in blackjack. The total of any hand is the sum of the card values in the hand\n" +
                                     "4. Players must decide whether to stand, hit, surrender, double down, or split.\n" +
                                     "5. The dealer acts last and must hit on 16 or less and stand on 17 through 21.\n" +
-                                    "6. Players win when their hand totals higher than dealer’s hand, or they have 21 or less when the dealer busts (i.e., exceeds 21).\n");
+                                    "6. Players win when their hand totals higher than dealer’s hand, or they have 21 or less when the dealer busts (i.e., exceeds 21).\n\n" +
 
-                String str = console.getStringInput("Type anything once you're ready to move on.");
+                        "Do you want to play?\n" +
+                                    "1. Yes\n" +
+                                    "2. No");
 
-                if (!str.equals(""))
-                    startGame();
-                // than call startgame or leavegame
-
+                exitGame(console1);
                 break;
 
             case 2:
@@ -192,16 +240,15 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
                 break;
 
             default:
-                leaveGame();
+                lobby.selectGameMenu();
                 break;
         }
     }
 
 
     public void startGame() {
-    //dealer starts handing out cards
-    }
 
+    }
 
 //    public void setMinimumBet(Double minimumBet) {
 //        this.minimumBet = minimumBet;
@@ -273,31 +320,49 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     }
 
     public void promptPlayerToHitOrStay() {
-        Integer input = console.getIntegerInput("Do you want to hit or stay?\n1. Hit\n2. Stay");
-        if (input == 1) {
-            playerHit();
-            promptPlayerToHitOrStay();
-        } else {
+        if(!checkForBlackjackPlayer() && !checkForPlayerBust()) {
+            Integer input = console.getIntegerInput("Do you want to hit or stay?\n1. Hit\n2. Stay");
+            if (input == 1) {
+                playerHit();
+                promptPlayerToHitOrStay();
+            } else {
+                playerStay();
+            }
+        }
+        else {
             playerStay();
         }
 
     }
 
-public void playGame() {
-        //When the game starts ask player if they want instructions
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card card : playerHand) {
+            console.print(card.getCardValue() + "\n");
+        } return sb.toString();
+    }
+
+    public void playGame() {
+    //When the game starts ask player if they want instructions
     getMenu();
     //if player says yes, print instructions then start game
     //if player says no start game
+    // if player wants to play after instructions, start game
+    // if player decides not to play, exit to lobby
+
     //at game start, deal cards
     dealCards();
-    playerHand.toString();
+    checkForBlackjackPlayer();
+    checkForBlackjackDealer();
+    toString();
     //ask player if they want to hit or stay
     promptPlayerToHitOrStay();
     //continue to ask player until they stay
     //dealer takes turn until dealer stays
     dealerTurnLoop();
+    checkForDealerBust();
     //winner is determined
-    //payout happens
 }
 
 
