@@ -1,10 +1,12 @@
 package models;
 
+import models.gamecomponents.DeckOfCards;
 import models.games.BlackjackGame;
 import models.games.CrapsGame;
 import models.games.GoFishGame;
 import models.games.KlondikeGame;
 import models.people.dealers.BlackjackDealer;
+import models.people.dealers.Dealer;
 import models.people.dealers.GoFishDealer;
 import models.people.dealers.KlondikeDealer;
 import models.people.players.Player;
@@ -20,6 +22,11 @@ public class Lobby {
     private String firstName;
     private String lastName;
     private double balance;
+    private DeckOfCards deckOfCards;
+
+    Player player1 = new Player();
+    Dealer dealer1 = new Dealer("","",8.0);
+    GoFishGame goFishGame = new GoFishGame(player1);
 
     //public Lobby(PlayerRepo playerRepo){
         //this.playerRepo = playerRepo;
@@ -29,6 +36,21 @@ public class Lobby {
     }
 
     public Integer intro() {
+        console.println("      ___           ___           ___           ___                    ___           ___           ___           ___              \n" +
+                "     /\\__\\         /\\  \\         /\\  \\         /\\  \\                  /\\  \\         /\\  \\         /\\  \\         /\\  \\             \n" +
+                "    /:/  /        /::\\  \\       /::\\  \\       /::\\  \\                /::\\  \\       /::\\  \\       /::\\  \\       /::\\  \\            \n" +
+                "   /:/__/        /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\              /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\           \n" +
+                "  /::\\  \\ ___   /::\\~\\:\\  \\   /::\\~\\:\\  \\   /:/  \\:\\__\\            /:/  \\:\\  \\   /:/  \\:\\  \\   /:/  \\:\\__\\   /::\\~\\:\\  \\          \n" +
+                " /:/\\:\\  /\\__\\ /:/\\:\\ \\:\\__\\ /:/\\:\\ \\:\\__\\ /:/__/ \\:|__|          /:/__/ \\:\\__\\ /:/__/ \\:\\__\\ /:/__/ \\:|__| /:/\\:\\ \\:\\__\\         \n" +
+                " \\/__\\:\\/:/  / \\/__\\:\\/:/  / \\/_|::\\/:/  / \\:\\  \\ /:/  /          \\:\\  \\  \\/__/ \\:\\  \\ /:/  / \\:\\  \\ /:/  / \\:\\~\\:\\ \\/__/         \n" +
+                "      \\::/  /       \\::/  /     |:|::/  /   \\:\\  /:/  /            \\:\\  \\        \\:\\  /:/  /   \\:\\  /:/  /   \\:\\ \\:\\__\\           \n" +
+                "      /:/  /        /:/  /      |:|\\/__/     \\:\\/:/  /              \\:\\  \\        \\:\\/:/  /     \\:\\/:/  /     \\:\\ \\/__/           \n" +
+                "     /:/  /        /:/  /       |:|  |        \\::/__/                \\:\\__\\        \\::/  /       \\::/__/       \\:\\__\\             \n" +
+                "     \\/__/         \\/__/         \\|__|         ~~                     \\/__/         \\/__/         ~~            \\/__/             \n" +
+                "                                                                                                                                  ");
+
+
+
         Integer input = console.getIntegerInput("Hello and welcome to the Casino. Have you been here before?\n" +
                 "1. Yes" +
                 "2. No");
@@ -85,11 +107,15 @@ public class Lobby {
             case 1:
                 BlackjackGame blackjackGame = new BlackjackGame(player);
                 blackjackGame.playGame();
+             
+                BlackjackGame blackjackGame = new BlackjackGame(player);
+                blackjackGame.getMenu();
+
                 break;
             case 2:
                 //dealer = new Dealer(firstName, lastName, balance);
-                GoFishDealer goFishDealer = new GoFishDealer(firstName, lastName, balance);
-                GoFishGame goFishGame = new GoFishGame(player, goFishDealer);
+                GoFishDealer goFishDealer = new GoFishDealer(firstName, lastName, balance, deckOfCards);
+                GoFishGame goFishGame = new GoFishGame(player);
                 goFishGame.getMenu();
                 break;
             case 3:
@@ -99,7 +125,7 @@ public class Lobby {
                 klondikeGame.getMenu();
                 break;
             case 4:
-                CrapsGame crapsGame = new CrapsGame();
+                CrapsGame crapsGame = new CrapsGame(player);
                 crapsGame.getMenu();
                 break;
             case 5:

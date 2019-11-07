@@ -1,5 +1,6 @@
 package models.hands;
 
+import models.gamecomponents.Card;
 import models.gamecomponents.GameComponent;
 
 import java.util.ArrayList;

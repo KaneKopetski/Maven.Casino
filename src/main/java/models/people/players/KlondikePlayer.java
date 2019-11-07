@@ -3,23 +3,30 @@ package models.people.players;
 import Interfaces.GamblingPlayer;
 import models.gamecomponents.Dice;
 import models.hands.KlondikeHand;
+import services.DiceService;
+import services.KlondikeService;
+import services.PlayerService;
+
+import java.util.ArrayList;
 
 public class KlondikePlayer extends Player implements GamblingPlayer {
-     Player klondikePlayer;
-     Dice dice=new Dice();
-     int valueOfDice;
-     KlondikeHand hand = new KlondikeHand(dice, valueOfDice);
+     private Player klondikePlayer;
+     private final Double betAmount;
+     private PlayerService ps;
+     private KlondikeService klondikeService = new KlondikeService();
 
     public KlondikePlayer(Player player) {
         this.klondikePlayer = player;
+        betAmount = 1.0;
+        ps = new PlayerService(klondikePlayer);
     }
 
     public Double placeBet() {
-        return null;
+        return PlayerService.depositMoney( betAmount);
     }
 
-    public Integer rollDice(Dice dice){
-        return null;
+    public ArrayList<Integer> rollDiceFiveTimes(){
+        return klondikeService.rollDiceFiveTimes();
     }
 
 

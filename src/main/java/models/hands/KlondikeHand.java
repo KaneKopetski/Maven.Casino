@@ -6,21 +6,14 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class KlondikeHand extends Hand {
-    String typeOfHand;
-    TreeMap<Dice, Integer> diceHand;
 
-    public KlondikeHand(Dice dice, Integer diceValue) {
-        this.diceHand = new TreeMap<Dice, Integer>();
+    private Integer playersPoint;
+
+    public Integer getPlayersPoint() {
+        return playersPoint;
     }
 
-    public String setTypeOfHand() {
-        return null;
+    public void setPlayersPoint(Integer playersPoint) {
+        this.playersPoint = playersPoint;
     }
-
-    public void addToHand(Dice dice, Integer diceValue) {
-        this.diceHand.put(dice, diceValue);
-    }
-
-
-
 }

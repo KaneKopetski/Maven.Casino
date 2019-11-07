@@ -16,10 +16,12 @@ public class DeckOfCards extends GameComponent {
                 deckOfCards.add(card);
             }
         }
-
     }
 
 
+    public Integer numberOfCardsLeft(){
+        return deckOfCards.size();
+    }
 
     public Boolean addToDeck(Card card) {
         this.deckOfCards.add(card);
@@ -31,6 +33,8 @@ public class DeckOfCards extends GameComponent {
     }
 
     public Card draw() {
+}
+    public Card drawCard() {
         Card card = deckOfCards.get(0);
         deckOfCards.remove(card);
         return card;
