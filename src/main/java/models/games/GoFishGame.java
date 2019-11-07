@@ -114,6 +114,7 @@ public class GoFishGame extends CardGame implements Game {
             {
 
                 sb.append(playerHand.get(i).getSuit());
+                sb.append(" ");
                 sb.append(playerHand.get(i).getCardValue().getCardValue());
                 sb.append(" ");
 
@@ -143,6 +144,8 @@ public class GoFishGame extends CardGame implements Game {
 
         }while(!win);
 
+        System.out.println("Game Over!");
+        displayWinner();
 
     }
 
@@ -182,6 +185,7 @@ public class GoFishGame extends CardGame implements Game {
     {
         //my logic should be to pick for a mostcountdealercard from player else pick mostcount card of player else draw a card
 
+
         return false;//todo may have to change it
     }
 
@@ -190,7 +194,7 @@ public class GoFishGame extends CardGame implements Game {
 
     public Boolean checkDeal(ArrayList<Card> hand, int playerOrDealer) //CHECKS FOR BOOK ON OPENING DEAL
     {
-        for(int i = 0; i<4 ; i++)
+        for(int i = 0; i<4 ; i++) // todo: array size instead of 4 when checkfor sets after playerturn/userturn
         {
             if(getCount(hand.get(i).getCardValue(), hand) == 4)
             {
@@ -229,7 +233,26 @@ public class GoFishGame extends CardGame implements Game {
     public void checkForGameOver()
     {
 
+        win = ( playerHand.size() == 0
+                || dealerHand.size() == 0); //todo: need to check if the stock is empty after drawing last card from the deck
+    }
 
+    public void displayWinner()
+    {
+        if(
+                playerSet.size() < dealerSet.size())
+        {
+            System.out.println("The computer Won!\n");
+        }else if(playerSet.size() > dealerSet.size())
+        {
+            System.out.println("Congrats YOU Won!\n" );
+//                    "User Books : " + userBooks +
+//                    "\nComputer Books : " + cpBooks);
+        }else if(playerSet.size() == dealerSet.size())
+        {
+            System.out.println("The game was a tie!\n"  );
+                   // "You both had " + userBooks + " books.");
+        }
     }
 
 
