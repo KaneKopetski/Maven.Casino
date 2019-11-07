@@ -36,7 +36,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
         diceService.createDie();
       for(int i = 0 ;i < 2 ;i++)
       {
-          sum=sum+diceService.rollDice(dice);
+          sum=sum+diceService.rollDice();
       }
 
 

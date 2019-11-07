@@ -1,12 +1,13 @@
 package models.people.dealers;
 
 import services.DiceService;
+import services.KlondikeService;
 
 import java.util.ArrayList;
 
 public class KlondikeDealer extends Dealer {
 
-    private DiceService dice = new DiceService();
+    private KlondikeService klondikeService = new KlondikeService();
     private ArrayList<Integer> rolls;
 
 
@@ -15,13 +16,7 @@ public class KlondikeDealer extends Dealer {
     }
 
     public ArrayList<Integer> rollDiceFiveTimes(){
-
-        rolls = new ArrayList<>();
-
-        for(int i = 0; i < 5; i++) {
-            rolls.add(dice.rollDice());
-        }
-        return rolls;
+        return klondikeService.rollDiceFiveTimes();
     }
 
 
