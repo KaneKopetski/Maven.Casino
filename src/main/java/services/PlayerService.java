@@ -5,8 +5,8 @@ import models.people.players.Player;
 
 
 public class PlayerService {
-    static Player player1 = new Player();
-    static Double balance;
+     Player player1 = new Player();
+     Double balance;
 
     public PlayerService(Player player1) {
         this.player1 = player1;
@@ -14,23 +14,29 @@ public class PlayerService {
     }
 
     public Double getBalance(Player player) {
-        return null;
+        return balance;
     }
 
     public Double depositMoney(Double depositAmt, Player player) {
-        return null;
+        balance = player1.getBalance();
+        balance += depositAmt;
+
+        return balance;
     }
 
     public Double withdrawMoney(Double withdrawAmt, Player player) {
-        return null;
+        balance = player1.getBalance();
+        balance -= withdrawAmt;
+
+        return balance;
     }
 
-    public static Double getBalance2(Player player) {
+    public  Double getBalance2(Player player) {
 
-        return player.getBalance();
+        return balance;
     }
 
-    public static Double depositMoney(Double depositAmt) {
+    public  Double depositMoney(Double depositAmt) {
 
         balance = player1.getBalance();
         balance += depositAmt;
@@ -38,7 +44,7 @@ public class PlayerService {
         return balance;
     }
 
-    public static Double withdrawMoney(Double withdrawAmt) {
+    public  Double withdrawMoney(Double withdrawAmt) {
 
         balance = player1.getBalance();
         balance -= withdrawAmt;

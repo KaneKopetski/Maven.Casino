@@ -6,6 +6,7 @@ import models.games.CrapsGame;
 import models.games.GoFishGame;
 import models.games.KlondikeGame;
 import models.people.dealers.BlackjackDealer;
+import models.people.dealers.Dealer;
 import models.people.dealers.GoFishDealer;
 import models.people.dealers.KlondikeDealer;
 import models.people.players.Player;
@@ -22,6 +23,10 @@ public class Lobby {
     private String lastName;
     private double balance;
     private DeckOfCards deckOfCards;
+
+    Player player1 = new Player();
+    Dealer dealer1 = new Dealer("","",8.0);
+    GoFishGame goFishGame = new GoFishGame(player1,dealer1);
 
     public Lobby(PlayerRepo playerRepo){
         this.playerRepo = playerRepo;
@@ -40,6 +45,9 @@ public class Lobby {
                 "     /:/  /        /:/  /       |:|  |        \\::/__/                \\:\\__\\        \\::/  /       \\::/__/       \\:\\__\\             \n" +
                 "     \\/__/         \\/__/         \\|__|         ~~                     \\/__/         \\/__/         ~~            \\/__/             \n" +
                 "                                                                                                                                  ");
+
+
+
         Integer input = console.getIntegerInput("Hello and welcome to the Casino. Have you been here before?\n" +
                 "1. Yes" +
                 "2. No");
