@@ -25,13 +25,12 @@ public class GoFishGame extends CardGame implements Game {
 
 
     public static void main(String[] args) {
-        Player player = new Player;
-        Dealer dealer = new Dealer;
-        GoFishGame goFishGame = new GoFishGame(player, dealer);
+        Player player = new Player();
+        GoFishGame goFishGame = new GoFishGame(player);
         goFishGame.getMenu();
     }
 
-   public GoFishGame(Player player, Dealer dealer)
+   public GoFishGame(Player player)
    //public GoFishGame(Player player)
     {
         this.player = player;
