@@ -28,8 +28,11 @@ public class Lobby {
     Dealer dealer1 = new Dealer("","",8.0);
     GoFishGame goFishGame = new GoFishGame(player1);
 
-    public Lobby(PlayerRepo playerRepo){
-        this.playerRepo = playerRepo;
+    //public Lobby(PlayerRepo playerRepo){
+        //this.playerRepo = playerRepo;
+  //  }
+
+    public Lobby(){
     }
 
     public Integer intro() {
