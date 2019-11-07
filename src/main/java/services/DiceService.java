@@ -18,9 +18,10 @@ public class DiceService {
 
     public Boolean addToHand(Dice dice, Integer valueOfDice, KlondikeHand hand) {
 
-        hand.addToHand(dice,valueOfDice);
-        //TODO must finish after Kane does hands
-        return false;
+//        hand.addToHand(dice,valueOfDice);
+//        //TODO must finish after Kane does hands
+//        return false;
+        return null;
 
     }
 
