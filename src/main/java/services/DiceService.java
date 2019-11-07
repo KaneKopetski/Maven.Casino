@@ -11,7 +11,7 @@ public class DiceService {
         return dice;
     }
 
-    public Integer rollDice() {
+    public Integer rollDice(Dice dice) {
         Random randomNum = new Random();
         return 1 + randomNum.nextInt(6);
     }

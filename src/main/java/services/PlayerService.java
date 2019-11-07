@@ -14,7 +14,7 @@ public class PlayerService {
     }
 
     public Double getBalance(Player player) {
-        return balance;
+        return player.getBalance();
     }
 
     public Double depositMoney(Double depositAmt, Player player) {
