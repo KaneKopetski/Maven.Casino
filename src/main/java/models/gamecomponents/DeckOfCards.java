@@ -32,6 +32,8 @@ public class DeckOfCards extends GameComponent {
         Collections.shuffle(deckOfCards);
     }
 
+    public Card draw() {
+}
     public Card drawCard() {
         Card card = deckOfCards.get(0);
         deckOfCards.remove(card);

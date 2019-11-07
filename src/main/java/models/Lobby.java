@@ -28,8 +28,11 @@ public class Lobby {
     Dealer dealer1 = new Dealer("","",8.0);
     GoFishGame goFishGame = new GoFishGame(player1);
 
-    public Lobby(PlayerRepo playerRepo){
-        this.playerRepo = playerRepo;
+    //public Lobby(PlayerRepo playerRepo){
+        //this.playerRepo = playerRepo;
+  //  }
+
+    public Lobby(){
     }
 
     public Integer intro() {
@@ -102,10 +105,12 @@ public class Lobby {
     private void menuActions(Integer input) {
         switch (input) {
             case 1:
-                //Dealer dealer = new Dealer();
-                BlackjackDealer blackjackDealer = new BlackjackDealer(firstName, lastName, balance, deckOfCards);
-                BlackjackGame blackjackGame = new BlackjackGame(player, blackjackDealer);
+                BlackjackGame blackjackGame = new BlackjackGame(player);
+                blackjackGame.playGame();
+             
+                BlackjackGame blackjackGame = new BlackjackGame(player);
                 blackjackGame.getMenu();
+
                 break;
             case 2:
                 //dealer = new Dealer(firstName, lastName, balance);
