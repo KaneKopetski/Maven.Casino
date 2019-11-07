@@ -34,4 +34,9 @@ public class BlackjackDealer extends Dealer {
         return null;
     }
 
+    public DeckOfCards shuffle(DeckOfCards deck) {
+        return null;
+    }
+
+}
 }
