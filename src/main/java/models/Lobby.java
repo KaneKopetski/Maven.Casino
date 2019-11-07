@@ -26,7 +26,7 @@ public class Lobby {
 
     Player player1 = new Player();
     Dealer dealer1 = new Dealer("","",8.0);
-    GoFishGame goFishGame = new GoFishGame(player1,dealer1);
+    GoFishGame goFishGame = new GoFishGame(player1);
 
     public Lobby(PlayerRepo playerRepo){
         this.playerRepo = playerRepo;
@@ -110,7 +110,7 @@ public class Lobby {
             case 2:
                 //dealer = new Dealer(firstName, lastName, balance);
                 GoFishDealer goFishDealer = new GoFishDealer(firstName, lastName, balance, deckOfCards);
-                GoFishGame goFishGame = new GoFishGame(player, goFishDealer);
+                GoFishGame goFishGame = new GoFishGame(player);
                 goFishGame.getMenu();
                 break;
             case 3:
