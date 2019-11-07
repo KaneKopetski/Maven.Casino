@@ -10,7 +10,7 @@ public class TestGoFishGame
 {
     Player player = new Player();
     Dealer dealer = new Dealer("","",8.0);
-    GoFishGame goFishGame = new GoFishGame(player,dealer);
+    GoFishGame goFishGame = new GoFishGame(player);
 
     @Test
     public void testGame()
