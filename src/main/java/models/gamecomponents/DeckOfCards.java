@@ -19,6 +19,10 @@ public class DeckOfCards extends GameComponent {
     }
 
 
+    public Integer numberOfCardsLeft(){
+        return deckOfCards.size();
+    }
+
     public Boolean addToDeck(Card card) {
         this.deckOfCards.add(card);
         return true;
