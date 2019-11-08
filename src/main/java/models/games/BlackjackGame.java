@@ -108,16 +108,19 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
             return dealerHand;
         }
 
+    //Test passed
     public String printDealerTurn(){
         console.print("Dealer's hand total:  " + dealerHandValue + "\n");
         return "Dealer's hand total:  " + dealerHandValue + "\n";
     }
 
+    //Test passed
     public Boolean playerStay(){
         playerStay = true;
         dealerTurnLoop();
         return true;
     }
+
 
     public Boolean determineWin() {
         Integer dealerHand = getDealerHandValue();
@@ -137,7 +140,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
         return true;
     }
 
-
+// passed test
     public String printPlayerWin(){
         console.print("\nYou win!\n\n");
         return "\nYou win!\n\n";

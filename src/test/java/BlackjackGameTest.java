@@ -1,4 +1,5 @@
 import models.gamecomponents.Card;
+import models.gamecomponents.CardValue;
 import models.games.BlackjackGame;
 import models.people.players.Player;
 import org.junit.Assert;
@@ -78,7 +79,7 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void printDealerHits() {
+    public void printDealerHitsTest() {
         Card card = blackjackGame.dealerHit();
         String expected = "Dealer hits: " + card.getCardValue() + "\n";
         String actual = blackjackGame.printDealerHits(card);
@@ -87,19 +88,19 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void dealerTurnLoop() {
+    public void dealerTurnLoopTest() {
 
 
     }
 
     @Test
-    public void dealerTurn() {
+    public void dealerTurnTest() {
 
 
     }
 
     @Test
-    public void printDealerTurn() {
+    public void printDealerTurnTest() {
     Card card = blackjackGame.dealerHit();
     Integer dealerHandValue = blackjackGame.getDealerHandValue();
 
@@ -109,11 +110,51 @@ public class BlackjackGameTest {
     Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void playerStayTest() {
+    Assert.assertTrue(blackjackGame.playerStay());
+    }
+
+//    @Test
+//    public void determineWin() {
+//    Integer dealerHand = blackjackGame.getDealerHandValue();
+//    Integer playerHand = blackjackGame.getPlayerHandValue();
+//
+//    Integer expected = 17;
+//    Integer actual =
+//
+//    Assert.assertTrue(expected, actual);
+//    }
+
+
+    @Test
+    public void printPlayerWinTest() {
+        Assert.assertEquals("\nYou win!\n\n",blackjackGame.printPlayerWin());
+    }
+
+    @Test
+    public void printPlayerLoseTest() {
+        Assert.assertEquals("\nYou lose!\n\n",blackjackGame.printPlayerLose());
+    }
+
+    @Test
+    public void printTie() {
+        Assert.assertEquals("\nNo Winners\n\n", blackjackGame.printTie());
+    }
+
+    @Test
+    public void printPlayerHandValue() {
+        Integer value = blackjackGame.getPlayerHandValue();
+
+        Assert.assertEquals("Total in your hand: " + value + "\n", blackjackGame.printPlayerHandValue(value));
+    }
+
+    @Test
+    public void printThanksForPlayTest(){
+    Assert.assertEquals("Thanks for playing Blackjack!\n", blackjackGame.printThanksForPlay());
+    }
 
 
 
 
-
-
-
-}
+    }
