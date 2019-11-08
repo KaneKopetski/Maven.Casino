@@ -33,6 +33,7 @@ public class DeckOfCards extends GameComponent {
     }
 
     public Card draw() {
+        return null;
 }
     public Card drawCard() {
         Card card = deckOfCards.get(0);

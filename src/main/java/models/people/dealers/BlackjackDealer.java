@@ -38,5 +38,5 @@ public class BlackjackDealer extends Dealer {
         return null;
     }
 
-}
+
 }

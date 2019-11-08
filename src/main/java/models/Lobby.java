@@ -108,7 +108,7 @@ public class Lobby {
                 BlackjackGame blackjackGame = new BlackjackGame(player);
                 blackjackGame.playGame();
              
-                BlackjackGame blackjackGame = new BlackjackGame(player);
+             //   BlackjackGame blackjackGame = new BlackjackGame(player);
                 blackjackGame.getMenu();
 
                 break;

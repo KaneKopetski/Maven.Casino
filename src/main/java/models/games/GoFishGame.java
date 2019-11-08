@@ -4,16 +4,15 @@ import Interfaces.Game;
 import models.gamecomponents.Card;
 import models.gamecomponents.CardValue;
 import models.gamecomponents.DeckOfCards;
-import models.people.dealers.Dealer;
 import models.people.players.Player;
 
 
 import java.util.ArrayList;
 
 public class GoFishGame extends CardGame implements Game {
-   // Player player;
-   // Dealer dealer;
+
     Boolean win;
+    Integer pickedCard =0;
 
     private DeckOfCards stock = new DeckOfCards();
     private ArrayList<Card> playerHand = new ArrayList<>();
@@ -31,10 +30,8 @@ public class GoFishGame extends CardGame implements Game {
     }
 
    public GoFishGame(Player player)
-   //public GoFishGame(Player player)
     {
         this.player = player;
-        //this.dealer = dealer;
         win = false;
     }
 
@@ -58,17 +55,18 @@ public class GoFishGame extends CardGame implements Game {
                 startGame();
                 break;
             case 1:
-                System.out.println("\n\nRULES:\n" +
-                        "The User and the Oppent(Computer) both start with" +
-                        " 7 cards. The user\nasks for a Card by entering the value" +
-                        " as a number. Ace is 1 and Jack,\nQueen,King are 11,12,13." +
+                console.getStringInput("\n\nRULES:\n" +
+                        "The User and the Oppent(Computer) both start with 7 cards." +
+                        "  The user\nasks for a Card by entering the value as a number" +
+                        " and Jack,Queen,King are 11,12,13." +
                         "If the card you've asked for is contained in\nthe deck of" +
                         " the opponent then gives a card with that value.\n" +
                         "If guessed incorrectly then player goes to fish for the card. (must draw from the Table Deck)" +
                         " If the\ncard drawn from the Table Deck then its the computer's turn." +
                         "The game ends\nif either the Table Deck, User Hand, or Computer" +
                         " Hand are empty. The \nplayer with the most set (a set is 4 cards of the same value) wins the game" +
-                        " \n\t\tPress Enter to start the Game");
+                        " \nPress Enter to start the Game");
+
                 //need to read the console to check if the user pressed Enter key
                 startGame();
                 break;
@@ -78,8 +76,8 @@ public class GoFishGame extends CardGame implements Game {
 
     public void startGame()
     {
-        do
-        {
+
+
             stock.shuffle();
             for(int i = 0; i<7; i++)
             {
@@ -110,21 +108,13 @@ public class GoFishGame extends CardGame implements Game {
             }
 
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("Player has the following Cards in Hand\n");
 
-            //showing the Players cards
-            for (int i=0; i<playerHand.size() ; i++)
-            {
+            do
+                {
+            //showing the Players cards and sets formed by Player and Dealer
+            showCard("Player");
+            showSets();
 
-                sb.append(playerHand.get(i).getSuit());
-                sb.append(" ");
-                sb.append(playerHand.get(i).getCardValue().getCardValue());
-                sb.append(" ");
-
-            }
-            sb.append("\n");
-            console.print(sb.toString());
 
             Boolean pt = playerTurn();
             if(pt)
@@ -135,16 +125,36 @@ public class GoFishGame extends CardGame implements Game {
             else
             {
                 //draw a card from the stock - go fishing
-                Card card;
-                card = stock.drawCard();
-                playerHand.add(card );
+                String userPress = console.getStringInput("Go Fish. Press enter Key\n");
 
-                checkDeal(playerHand, 1);
-                checkForGameOver();
+                    Card card;
+                    card = stock.drawCard();
+                    playerHand.add(card);
+
+                    checkDeal(playerHand, 1);
+                    checkForGameOver();
+
             }
 
-            dealerTurn();
-            checkForGameOver();
+
+
+            Boolean bt = dealerTurn();
+            if(bt)
+            {
+
+                checkDeal(dealerHand, 2);
+                checkForGameOver();
+            }
+            else
+            {
+                //draw a card from the stock - go fishing
+                Card card;
+                card = stock.drawCard();
+                dealerHand.add(card );
+
+                checkDeal(dealerHand, 2);
+                checkForGameOver();
+            }
 
         }while(!win);
 
@@ -158,6 +168,7 @@ public class GoFishGame extends CardGame implements Game {
     {
 
         Integer whatCard = console.getIntegerInput("Which value would you like to ask for from the Dealer?\n");
+
         int count = 0;
         Card card = null;
         for (int i=0; i<dealerHand.size(); i++)
@@ -174,42 +185,105 @@ public class GoFishGame extends CardGame implements Game {
 
         if (count>0)
         {
-            playerHand.add(card); // todo check this
-            dealerHand.remove(card);
+
+            int removeCount = 0;
+            for (int i=0 ; i<dealerHand.size(); i++)
+            {
+
+                if (dealerHand.get(i).getCardValue().getCardValue() == card.getCardValue().getCardValue())
+                {
+                    playerHand.add(dealerHand.get(i));
+                    dealerHand.remove(i);
+                    i--;
+                    removeCount += 1;
+
+                }
+            }
+            console.println("Player picked " + removeCount + " card(s) from dealer\n");
             return true;
         }
-
-
-
-        return false;//todo may have to change it
+        return false;
     }
 
     //public Boolean dealerTurn(Dealer goFishDealer)
     public Boolean dealerTurn()
     {
-        //my logic should be to pick for a mostcountdealercard from player else pick mostcount card of player else draw a card
+
+        Integer mostCount = getMostCount(); //gives mostcount from the dealer
+
+        int count = 0;
+        Card card = null;
+        for (int i=0; i<playerHand.size(); i++)
+        {
+            card = playerHand.get(i);
+            CardValue cv = card.getCardValue();
+            Integer cvb = cv.getCardValue();
+            if(cvb == mostCount) //if the player hand contains the card asked by the dealer
+            {
+                dealerHand.add(card);
+                int removeCount = 0;
+                for (int j=0 ; j<playerHand.size(); i++)
+                {
+
+                    if (playerHand.get(j).getCardValue().getCardValue() == card.getCardValue().getCardValue())
+                    {
+                        dealerHand.add(playerHand.get(j));
+                        playerHand.remove(j);
+                        i--;
+                        removeCount += 1;
+
+                    }
+                }
+                console.println("Dealer picked " + removeCount + " card(s) from Player\n");
+                return true;
+
+            }
+        }
+
+        return false;
 
 
-        return false;//todo may have to change it
     }
 
 
 
-
-    public Boolean checkDeal(ArrayList<Card> hand, int playerOrDealer) //CHECKS FOR BOOK ON OPENING DEAL
+    public Boolean checkDeal(ArrayList<Card> hand, int playerOrDealer)
     {
-        for(int i = 0; i<4 ; i++) // todo: array size instead of 4 when checkfor sets after playerturn/userturn
+        for(int i = 0; i<hand.size()-3 ; i++)
         {
-            if(getCount(hand.get(i).getCardValue(), hand) == 4)
+            if(getCount(hand.get(i).getCardValue(), hand) == 3)
             {
+                Integer cardToBeRemoved = hand.get(i).getCardValue().getCardValue();
+
                 if (playerOrDealer == 1)
                 {
                     playerSet.add(hand.get(i).getCardValue());
+                    for (int j = 0; j < playerHand.size(); j++)
+                    {
+                        Integer cv1 = playerHand.get(j).getCardValue().getCardValue();
+                        if (cv1 == cardToBeRemoved)
+                        {
+                            playerHand.remove(j);
+                            j--;
+                        }
+                    }
+
                 }
                 else
                 {
                     dealerSet.add(hand.get(i).getCardValue());
+                    for (int j = 0; j < dealerHand.size(); j++) {
+                        Integer cv1 = dealerHand.get(j).getCardValue().getCardValue();
+
+                        if (cv1 == cardToBeRemoved)
+                        {
+                            dealerHand.remove(j);
+                            j--;
+                        }
+                    }
                 }
+
+
                 return true;
 
             }
@@ -217,7 +291,27 @@ public class GoFishGame extends CardGame implements Game {
         return false;
     }
 
-    //check for the card if it occurs 4 times within the arraylist
+    //checking the dealerHand (mostcount) to ask from the player
+    public int getMostCount()
+    {
+        int newCount;
+        int mostCount = 0;
+        Integer mostCommon =0;
+
+        for (int i=0 ; i<dealerHand.size(); i++)
+        {
+            newCount = getCount(dealerHand.get(i).getCardValue(),dealerHand);
+            if (newCount > mostCount)
+            {
+                mostCount = newCount;
+                mostCommon = dealerHand.get(i).getCardValue().getCardValue();
+            }
+
+        }
+        return mostCommon;
+    }
+
+    //check for occurence
     public int getCount(CardValue value, ArrayList<Card> hand)
     {
         int occurence = 0;
@@ -232,13 +326,12 @@ public class GoFishGame extends CardGame implements Game {
     }
 
 
-
     //to check if the game is over or not
     public void checkForGameOver()
     {
 
-        win = ( playerHand.size() == 0
-                || dealerHand.size() == 0); //todo: need to check if the stock is empty after drawing last card from the deck
+        win = ( stock.numberOfCardsLeft() == 0 || playerHand.size() == 0
+                || dealerHand.size() == 0);
     }
 
     public void displayWinner()
@@ -247,18 +340,60 @@ public class GoFishGame extends CardGame implements Game {
                 playerSet.size() < dealerSet.size())
         {
             System.out.println("The computer Won!\n");
-        }else if(playerSet.size() > dealerSet.size())
+        }
+        else if(playerSet.size() > dealerSet.size())
         {
             System.out.println("Congrats YOU Won!\n" );
 //                    "User Books : " + userBooks +
 //                    "\nComputer Books : " + cpBooks);
-        }else if(playerSet.size() == dealerSet.size())
+        }
+        else if(playerSet.size() == dealerSet.size())
         {
             System.out.println("The game was a tie!\n"  );
                    // "You both had " + userBooks + " books.");
         }
     }
 
+    //showing the Player/Dealer card
+    public void showCard(String playerOrDealer)
+    {
+        if (playerOrDealer == "Player") {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Player has the following Cards in Hand\n");
+            for (int i = 0; i < playerHand.size(); i++) {
+
+                sb.append(playerHand.get(i).getSuit());
+                sb.append(" ");
+                sb.append(playerHand.get(i).getCardValue().getCardValue());
+                sb.append(" ");
+
+            }
+            sb.append("\n\n");
+            console.print(sb.toString());
+        }
+    }
+
+    public void showSets()
+    {
+        StringBuilder sb1 = new StringBuilder();
+        sb1.append(String.format("Player has %s set(s) [", playerSet.size()));
+        for(int i=0; i<playerSet.size(); i++)
+        {
+            sb1.append(playerSet.get(i));
+        }
+        sb1.append("]\n");
+        console.println(sb1.toString());
+
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(String.format("Dealer has %s set(s) [", dealerSet.size()));
+        for(int i=0; i<dealerSet.size(); i++)
+        {
+            sb2.append(dealerSet.get(i));
+        }
+        sb2.append("]\n");
+        console.println(sb2.toString());
+
+    }
 
 
 
