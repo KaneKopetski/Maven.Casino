@@ -398,9 +398,9 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     public String printMinimumBetMessage() {
         console.print("Minimum bet is $" + minimumBet + ". Please try again.");
         return "Minimum bet is $" + minimumBet + ". Please try again.";
-
-
     }
+
+
 //You CANNOT write unit tests for methods that require user input
     public Double placeBet() {
             Double input = console.getDoubleInput("How much would you like to bet?");

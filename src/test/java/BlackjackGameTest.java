@@ -1,10 +1,12 @@
 import models.gamecomponents.Card;
 import models.gamecomponents.CardValue;
 import models.games.BlackjackGame;
+import models.people.dealers.BlackjackDealer;
 import models.people.players.Player;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import services.PlayerRepo;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,8 @@ public class BlackjackGameTest {
     @Before
     public void blackJackTest() {
         Player player = new Player();
-        BlackjackGame blackjackGame = new BlackjackGame(player);
+        PlayerRepo playerRepo = new PlayerRepo();
+        BlackjackGame blackjackGame = new BlackjackGame(player, playerRepo);
         this.blackjackGame = blackjackGame;
         this.player = player;
     }
@@ -150,9 +153,32 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void printThanksForPlayTest(){
-    Assert.assertEquals("Thanks for playing Blackjack!\n", blackjackGame.printThanksForPlay());
+    public void printMinimumBetMessage(){
+
+        Assert.assertEquals("Total in your hand: " + value + "\n", blackjackGame.printPlayerHandValue(value));
     }
+
+
+
+    @Test
+    public void printInvalidSelectMessageTest(){
+        Assert.assertEquals("Invalid selection please try again.\n", blackjackGame.printInvalidSelectMessage());
+    }
+
+    @Test
+    public void printThanksForPlayTest(){
+        Assert.assertEquals("Thanks for playing Blackjack!\n", blackjackGame.printThanksForPlay());
+    }
+
+    @Test
+    public void printDealerUpCardTest(){
+        ArrayList<Card> dealerHand = new ArrayList<>();
+        Assert.assertEquals("\n" + "Dealer's upcard is: " + dealerHand.get(1).getCardValue() + "\n", blackjackGame.printDealerUpCard());
+    }
+
+
+
+
 
 
 
