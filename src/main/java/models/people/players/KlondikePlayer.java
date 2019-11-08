@@ -9,7 +9,7 @@ import services.PlayerService;
 
 import java.util.ArrayList;
 
-public class KlondikePlayer extends Player implements GamblingPlayer {
+public class KlondikePlayer extends Player {
      private Player klondikePlayer;
      private final Double betAmount;
      private PlayerService ps;
@@ -20,13 +20,6 @@ public class KlondikePlayer extends Player implements GamblingPlayer {
         this.klondikePlayer = player;
         betAmount = 1.0;
         ps = new PlayerService();
-    }
-
-
-   public Double placeBet() {
-
-       //TODO FIX THIS SHIIITTTTTT return playerService.depositMoney(betAmount);
-       return null;
     }
 
     public ArrayList<Integer> rollDiceFiveTimes(){
