@@ -17,9 +17,10 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
     Integer pointNumber;
     Player player;
     Console console = new Console(System.in, System.out);
+    PlayerRepo playerRepo;
 
 
-    public CrapsGame(Player player) {
+    public CrapsGame(Player player, PlayerRepo playerRepo) {
         this.player = player;
     }
 
@@ -53,8 +54,8 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
         } else {
             console.print("You don't have enough money. Sending you back to the lobby.\n");
             PlayerRepo playerRepo = new PlayerRepo();
-            Lobby lobby = new Lobby();
-            lobby.selectGameMenu(player);
+            Lobby lobby = new Lobby(playerRepo, player);
+            lobby.selectGameMenu();
         }
     }
 
@@ -128,8 +129,8 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
             case 1:
                 determineWin();
             case 2:
-                Lobby lobby = new Lobby();
-                lobby.selectGameMenu(player);
+                Lobby lobby = new Lobby(playerRepo, player);
+                lobby.selectGameMenu();
         }
     }
 
