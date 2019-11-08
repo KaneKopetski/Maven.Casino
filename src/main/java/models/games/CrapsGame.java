@@ -18,29 +18,15 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
     Player player;
     Console console = new Console(System.in, System.out);
 
-    public static void main(String[] args) {
-        Player player = new Player();
-        player.setBalance(1000.00);
-        CrapsGame crapsGame = new CrapsGame(player);
-        crapsGame.getMenu();
-        crapsGame.askPlayerToPlaceBet();
-        crapsGame.askToRollDie();
-        crapsGame.determineWin();
-    }
-
-
-
-
-
 
     public CrapsGame(Player player) {
         this.player = player;
     }
+
     public void getMenu() {
         Integer userInput = console.getIntegerInput(
                 "\nDo you want to start craps\n\n" +
-                        "1. Yes\n"
-                        );
+                        "1. Yes\n");
     }
 
 
@@ -59,7 +45,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
       }
     public void askPlayerToPlaceBet() {
         betAmount = console.getDoubleInput("how much do you want to bet");
-        PlayerService playerService = new PlayerService(player);
+        PlayerService playerService = new PlayerService();
         Double balance = playerService.getBalance(player);
 
         if (betAmount <= balance) {
@@ -68,7 +54,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
             console.print("You don't have enough money. Sending you back to the lobby.\n");
             PlayerRepo playerRepo = new PlayerRepo();
             Lobby lobby = new Lobby();
-            lobby.selectGameMenu();
+            lobby.selectGameMenu(player);
         }
     }
 
@@ -84,6 +70,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
 
               System.out.println("YOU WIN ON FIRST ROLL\n");
               payOut();
+              promptToPlayAgain();
               return true;
           }
           else {
@@ -101,6 +88,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
                   if (finalValue == sum) {
                       System.out.println("YOU WIN FINALLY");
                       payOut();
+                      promptToPlayAgain();
                       return true;
 
                   }
@@ -108,7 +96,8 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
                       {
                           if(finalValue==7||finalValue==11){
                               System.out.println   ("SORRY YOU LOOSE");
-                      payOut();}
+                      payOut();
+                              promptToPlayAgain();}
                           else
                               System.out.println("ROLL AGAIN");
 
@@ -122,12 +111,26 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
 
 
     public Double payOut() {
-
         return null;
     }
 
     public Double addToBet() {
         return null;
+    }
+
+    public void promptToPlayAgain() {
+        Integer input = console.getIntegerInput("PLAY AGAIN?\n1. YES\n2. NO");
+        playAgainActions(input);
+    }
+
+    public void playAgainActions(Integer input) {
+        switch (input) {
+            case 1:
+                determineWin();
+            case 2:
+                Lobby lobby = new Lobby();
+                lobby.selectGameMenu(player);
+        }
     }
 
 }
