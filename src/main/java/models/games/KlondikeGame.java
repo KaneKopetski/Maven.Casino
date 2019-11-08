@@ -13,17 +13,29 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
     Dealer dealer;
 
     Console console = new Console(System.in, System.out);
-    KlondikePrints klondikePrints = new KlondikePrints();
+    KlondikePrints kp = new KlondikePrints();
 
 
     public KlondikeGame(Player player) {
         this.player = player;
     }
 
-    public void welcome() {
-        console.println(klondikePrints.klondikeWelcome());
-        //console.getIntegerInput();
+    public void klondikeMenu() {
+        welcome();
+
+        Integer choice = instructions();
+
+
     }
+
+    public void welcome() {
+        console.println(kp.klondikeWelcome());
+    }
+
+    public Integer instructions() {
+        return console.getIntegerInput(kp.askInstructions());
+    }
+    
 
     public String dealerRoll() {
         return null;
