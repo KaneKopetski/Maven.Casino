@@ -141,7 +141,7 @@ public class Lobby {
                 klondikeGame.klondikeMenu();
                 break;
             case 4:
-                CrapsGame crapsGame = new CrapsGame(player);
+                CrapsGame crapsGame = new CrapsGame(player, playerRepo);
                 crapsGame.determineWin();
                 break;
             case 5:

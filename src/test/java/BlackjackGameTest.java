@@ -153,12 +153,14 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void printMinimumBetMessage(){
-
-        Assert.assertEquals("Total in your hand: " + value + "\n", blackjackGame.printPlayerHandValue(value));
+    public void printBetCheck() {
+        Assert.assertEquals("You're broke. Get some more money.", blackjackGame.printBetCheck());
     }
 
-
+    @Test
+    public void printMinimumBetMessageTest(){
+        Assert.assertEquals("Minimum bet is $5.0. Please try again.", blackjackGame.printMinimumBetMessage());
+    }
 
     @Test
     public void printInvalidSelectMessageTest(){
@@ -170,15 +172,22 @@ public class BlackjackGameTest {
         Assert.assertEquals("Thanks for playing Blackjack!\n", blackjackGame.printThanksForPlay());
     }
 
+//    @Test
+//    public void printDealerUpCardTest(){
+//        ArrayList<Card> dealerHand = new ArrayList<>();
+//        dealerHand.add(Card.);
+//        (CardValue.FOUR)
+//        Assert.assertEquals("\n" + "Dealer's upcard is: " + dealerHand.get(1).getCardValue() + "\n", blackjackGame.printDealerUpCard());
+//    }
+
     @Test
-    public void printDealerUpCardTest(){
-        ArrayList<Card> dealerHand = new ArrayList<>();
-        Assert.assertEquals("\n" + "Dealer's upcard is: " + dealerHand.get(1).getCardValue() + "\n", blackjackGame.printDealerUpCard());
+    public void printPlayerBustTest(){
+        Assert.assertEquals("\nYou bust!\n\n", blackjackGame.printPlayerBust());
     }
 
-
-
-
+    @Test
+    public String printgotBJPlayerTest() {
+        Assert.assertEquals("\nYou bust!\n\n", blackjackGame.printgotBJPlayer());
 
 
 
