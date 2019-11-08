@@ -135,7 +135,7 @@ public class Lobby {
             case 3:
                 KlondikePlayer klondikePlayer = new KlondikePlayer(player);
                 KlondikeGame klondikeGame = new KlondikeGame(klondikePlayer);
-                klondikeGame.getMenu();
+                klondikeGame.klondikeMenu();
                 break;
             case 4:
                 CrapsGame crapsGame = new CrapsGame(player);
