@@ -55,6 +55,7 @@ public class CrapsGame extends DiceGame implements Game, GamblingGame {
             console.print("You don't have enough money. Sending you back to the lobby.\n");
             PlayerRepo playerRepo = new PlayerRepo();
             Lobby lobby = new Lobby(playerRepo, player);
+
             lobby.selectGameMenu();
         }
     }
