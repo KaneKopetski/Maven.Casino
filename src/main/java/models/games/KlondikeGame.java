@@ -2,6 +2,7 @@ package models.games;
 
 import Interfaces.GamblingGame;
 import Interfaces.Game;
+import models.Lobby;
 import models.hands.KlondikeDealerHand;
 import models.hands.KlondikeHand;
 import models.people.dealers.Dealer;
@@ -57,8 +58,12 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
 
         Integer choice2 = playAgain();
         playAgainChoice(choice2);
-        if(choice2 == 1)
+        if(choice2 == 1) {
             playGame();
+        } else {
+            Lobby lobby = new Lobby();
+            lobby.selectGameMenu(player);
+        }
     }
 
     public void welcome() {
