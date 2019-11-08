@@ -7,6 +7,7 @@ import models.gamecomponents.Card;
 import models.gamecomponents.CardValue;
 import models.gamecomponents.DeckOfCards;
 import models.people.players.Player;
+import services.PlayerRepo;
 import services.PlayerService;
 
 import java.util.ArrayList;
@@ -27,12 +28,13 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     Boolean dealerStay = false;
     Integer playerHandValue = 0;
     Integer dealerHandValue = 0;
-    Lobby lobby = new Lobby();
     PlayerService playerServices;
+    PlayerRepo playerRepo;
 
 
-    public BlackjackGame(Player player){
+    public BlackjackGame(Player player, PlayerRepo playerRepo){
         this.player = player;
+        this.playerRepo = playerRepo;
         deckOfCards = new DeckOfCards();
         playerHand = new ArrayList<>();
         dealerHand = new ArrayList<>();
@@ -275,7 +277,8 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
                 startGame();
                 break;
             default:
-                lobby.selectGameMenu(player);
+                Lobby lobby = new Lobby(playerRepo, player);
+                lobby.selectGameMenu();
                 break;
         }
     }
@@ -314,7 +317,8 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
                 startGame();
                 break;
             case 2:
-                lobby.selectGameMenu(player);
+                Lobby lobby = new Lobby(playerRepo, player);
+                lobby.selectGameMenu();
                 break;
             default:
                 printInvalidSelectMessage();
@@ -375,7 +379,8 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
             return true;
         } else if(betAmount < playerServices.getBalance(this.player)) {
             printBetCheck();
-            lobby.selectGameMenu(player);
+            Lobby lobby = new Lobby(playerRepo, player);
+            lobby.selectGameMenu();
             return false;
         } else {
             printMinimumBetMessage();
@@ -427,7 +432,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     private void restartGameAction(Integer input2) {
         switch (input2) {
             case 1:
-                BlackjackGame blackjackGame = new BlackjackGame(player);
+                BlackjackGame blackjackGame = new BlackjackGame(player, playerRepo);
                 blackjackGame.playGame();
                 break;
             case 2:
@@ -448,7 +453,8 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
 
     public void leaveGame() {
         printThanksForPlay();
-        lobby.selectGameMenu(player);
+        Lobby lobby = new Lobby(playerRepo, player);
+        lobby.selectGameMenu();
     }
 
 
