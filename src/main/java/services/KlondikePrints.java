@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class KlondikePrints {
 
-    Console console = new Console(System.in, System.out);
 
     public String klondikeWelcome() {
         return
@@ -17,6 +16,12 @@ public class KlondikePrints {
                 " ██║  ██╗███████╗╚██████╔╝██║ ╚████║██████╔╝██║██║  ██╗███████╗\n" +
                 " ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚═╝╚═╝  ╚═╝╚══════╝\n" +
                 "****************************************************************\n\n";
+    }
+
+    public String askInstructions() {
+        return "Would you like to read the rules of the game before playing?\n" +
+                "1.  Yes I would like that very much.\n" +
+                "2.  I'm a pro so no thanks.\n";
     }
 
     public String displayInstructions() {
@@ -39,10 +44,10 @@ public class KlondikePrints {
     public ArrayList<String> printDice(ArrayList<Integer> dice) {
         ArrayList<String> diceArt = new ArrayList<>();
 
-        for(int i = 0; i < dice.size(); i++) {
-            switch (dice.get(i)) {
+        for (Integer die : dice) {
+            switch (die) {
                 case 1:
-                    diceArt.add( "\n ,------------,\n" +
+                    diceArt.add("\n  ,------------,\n" +
                                   "  |            |\n" +
                                   "  |            |\n" +
                                   "  |     ██     |\n" +
@@ -51,49 +56,49 @@ public class KlondikePrints {
                                   "  '------------'\n");
                     break;
                 case 2:
-                    diceArt.add(  ",------------,\n" +
-                                "  |            |\n" +
-                                "  |        ██  |\n" +
-                                "  |            |\n" +
-                                "  |  ██        |\n" +
-                                "  |            |\n" +
-                                "  '------------'\n");
+                    diceArt.add(",------------,\n" +
+                              "  |            |\n" +
+                              "  |        ██  |\n" +
+                              "  |            |\n" +
+                              "  |  ██        |\n" +
+                              "  |            |\n" +
+                              "  '------------'\n");
                     break;
                 case 3:
-                    diceArt.add(  ",------------,\n" +
-                                "  |        ██  |\n" +
-                                "  |            |\n" +
-                                "  |     ██     |\n" +
-                                "  |            |\n" +
-                                "  |  ██        |\n" +
-                                "  '------------'\n");
+                    diceArt.add(",------------,\n" +
+                              "  |        ██  |\n" +
+                              "  |            |\n" +
+                              "  |     ██     |\n" +
+                              "  |            |\n" +
+                              "  |  ██        |\n" +
+                              "  '------------'\n");
                     break;
                 case 4:
-                    diceArt.add(  ",------------,\n" +
-                                "  |            |\n" +
-                                "  |  ██    ██  |\n" +
-                                "  |            |\n" +
-                                "  |  ██    ██  |\n" +
-                                "  |            |\n" +
-                                "  '------------'\n");
+                    diceArt.add(",------------,\n" +
+                              "  |            |\n" +
+                              "  |  ██    ██  |\n" +
+                              "  |            |\n" +
+                              "  |  ██    ██  |\n" +
+                              "  |            |\n" +
+                              "  '------------'\n");
                     break;
                 case 5:
-                    diceArt.add(  ",------------,\n" +
-                                "  |  ██    ██  |\n" +
-                                "  |            |\n" +
-                                "  |     ██     |\n" +
-                                "  |            |\n" +
-                                "  |  ██    ██  |\n" +
-                                "  '------------'\n");
+                    diceArt.add(",------------,\n" +
+                              "  |  ██    ██  |\n" +
+                              "  |            |\n" +
+                              "  |     ██     |\n" +
+                              "  |            |\n" +
+                              "  |  ██    ██  |\n" +
+                              "  '------------'\n");
                     break;
                 case 6:
-                    diceArt.add(  ",------------,\n" +
-                                "  |  ██    ██  |\n" +
-                                "  |            |\n" +
-                                "  |  ██    ██  |\n" +
-                                "  |            |\n" +
-                                "  |  ██    ██  |\n" +
-                                "  '------------'\n");
+                    diceArt.add(",------------,\n" +
+                              "  |  ██    ██  |\n" +
+                              "  |            |\n" +
+                              "  |  ██    ██  |\n" +
+                              "  |            |\n" +
+                              "  |  ██    ██  |\n" +
+                              "  '------------'\n");
                     break;
             }
         }

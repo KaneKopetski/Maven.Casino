@@ -14,6 +14,7 @@ public class KlondikePlayer extends Player implements GamblingPlayer {
      private final Double betAmount;
      private PlayerService ps;
      private KlondikeService klondikeService = new KlondikeService();
+     private PlayerService playerService = new PlayerService();
 
     public KlondikePlayer(Player player) {
         this.klondikePlayer = player;
@@ -23,7 +24,7 @@ public class KlondikePlayer extends Player implements GamblingPlayer {
 
 
    public Double placeBet() {
-       // return PlayerService.depositMoney( betAmount);
+       //TODO FIX THIS SHIIITTTTTT return playerService.depositMoney(betAmount);
        return null;
     }
 
