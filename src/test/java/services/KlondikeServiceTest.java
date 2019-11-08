@@ -1,4 +1,4 @@
-package io.zipcoder.casino.Service;
+package services;
 
 import org.junit.Assert;
 import org.junit.Before;

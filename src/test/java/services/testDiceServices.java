@@ -1,8 +1,5 @@
-package io.zipcoder.casino.Service;
+package services;
 
-import models.gamecomponents.Dice;
-import models.gamecomponents.GameComponent;
-import models.hands.KlondikeHand;
 import org.junit.Assert;
 import org.junit.Test;
 import services.DiceService;

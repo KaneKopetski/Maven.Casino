@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package models.games;
 
 import models.games.GoFishGame;
 import models.people.dealers.Dealer;

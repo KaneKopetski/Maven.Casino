@@ -1,4 +1,4 @@
-package io.zipcoder.casino.models;
+package models.people.players;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package io.zipcoder.casino.Hands;
+package models.hands;
 
 public class TestKlondikeHand {
 }

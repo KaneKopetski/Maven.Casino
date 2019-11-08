@@ -1,10 +1,6 @@
 package models.people.dealers;
 
-import models.gamecomponents.Card;
-import models.gamecomponents.DeckOfCards;
 import models.hands.Hand;
-
-import java.util.ArrayList;
 
 public class Dealer {
     private String firstName;

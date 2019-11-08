@@ -1,9 +1,8 @@
-package io.zipcoder.casino.GameComponents;
+package models.gamecomponents;
 
 import models.gamecomponents.Card;
 import models.gamecomponents.CardSuit;
 import models.gamecomponents.CardValue;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

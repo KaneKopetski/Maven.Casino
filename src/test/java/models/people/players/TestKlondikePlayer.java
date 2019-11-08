@@ -1,4 +1,4 @@
-package io.zipcoder.casino.People.Person;
+package models.people.players;
 
 import models.people.players.KlondikePlayer;
 import models.people.players.Player;
