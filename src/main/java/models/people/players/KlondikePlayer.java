@@ -1,9 +1,5 @@
 package models.people.players;
 
-import Interfaces.GamblingPlayer;
-import models.gamecomponents.Dice;
-import models.hands.KlondikeHand;
-import services.DiceService;
 import services.KlondikeService;
 import services.PlayerService;
 

@@ -1,5 +1,8 @@
 package models.gamecomponents;
 
+import models.gamecomponents.Card;
+import models.gamecomponents.CardSuit;
+import models.gamecomponents.CardValue;
 import org.junit.Before;
 import org.junit.Test;
 

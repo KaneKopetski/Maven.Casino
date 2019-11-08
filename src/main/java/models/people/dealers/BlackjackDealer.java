@@ -4,8 +4,6 @@ import models.gamecomponents.Card;
 import models.gamecomponents.DeckOfCards;
 import models.hands.BlackjackHand;
 
-import java.util.ArrayList;
-
 public class BlackjackDealer extends Dealer {
     Dealer blackjackDealer;
     BlackjackHand hand = new BlackjackHand();

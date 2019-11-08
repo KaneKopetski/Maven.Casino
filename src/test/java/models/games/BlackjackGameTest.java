@@ -1,7 +1,6 @@
+package models.games;
 import models.gamecomponents.Card;
-import models.gamecomponents.CardValue;
 import models.games.BlackjackGame;
-import models.people.dealers.BlackjackDealer;
 import models.people.players.Player;
 import org.junit.Assert;
 import org.junit.Before;
@@ -155,6 +154,10 @@ public class BlackjackGameTest {
     @Test
     public void printBetCheck() {
         Assert.assertEquals("You're broke. Get some more money.", blackjackGame.printBetCheck());
+    }
+
+    public void printMinimumBetMessage(){
+        //Assert.assertEquals("Total in your hand: " + value + "\n", blackjackGame.printPlayerHandValue(value));
     }
 
     @Test

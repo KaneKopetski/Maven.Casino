@@ -1,4 +1,4 @@
-package io.zipcoder.casino.models;
+package models.people.dealers;
 
 import models.people.dealers.Dealer;
 import org.junit.Assert;

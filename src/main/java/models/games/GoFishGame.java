@@ -1,6 +1,7 @@
 package models.games;
 
 import Interfaces.Game;
+import models.Lobby;
 import models.gamecomponents.Card;
 import models.gamecomponents.CardValue;
 import models.gamecomponents.DeckOfCards;
@@ -19,24 +20,14 @@ public class GoFishGame extends CardGame implements Game {
     private ArrayList<Card> dealerHand = new ArrayList<>();
 
     //to store the sets formed by the player and the dealer
-    private ArrayList<CardValue> playerSet = new ArrayList<>();
-    private ArrayList<CardValue> dealerSet = new ArrayList<>();
+    private ArrayList<Integer> playerSet = new ArrayList<>();
+    private ArrayList<Integer> dealerSet = new ArrayList<>();
 
-
-  /*  public static void main(String[] args) {
-        Player player = new Player();
-        GoFishGame goFishGame = new GoFishGame(player);
-        goFishGame.getMenu();
-    }
-*/
    public GoFishGame(Player player)
     {
         this.player = player;
         win = false;
     }
-
-
-
 
     public void getMenu() {
         Integer userInput = console.getIntegerInput(
@@ -76,21 +67,12 @@ public class GoFishGame extends CardGame implements Game {
 
     public void startGame()
     {
-
-
             stock.shuffle();
-            for(int i = 0; i<7; i++)
-            {
-                Card card;
 
-                card = stock.drawCard();
-                playerHand.add(card );
-
-                card = stock.drawCard();
-                dealerHand.add(card);
-            }
+            distributeCards();
 
             checkDeal(playerHand, 1);
+
             checkDeal(dealerHand, 2);
 
             if (playerSet.size() > 0)
@@ -110,13 +92,13 @@ public class GoFishGame extends CardGame implements Game {
 
 
             do
-                {
-            //showing the Players cards and sets formed by Player and Dealer
+            {
+
             showCard("Player");
             showSets();
 
-
             Boolean pt = playerTurn();
+
             if(pt)
             {
                 checkDeal(playerHand, 1);
@@ -135,8 +117,6 @@ public class GoFishGame extends CardGame implements Game {
                     checkForGameOver();
 
             }
-
-
 
             Boolean bt = dealerTurn();
             if(bt)
@@ -160,6 +140,9 @@ public class GoFishGame extends CardGame implements Game {
 
         System.out.println("Game Over!");
         displayWinner();
+
+        promptToPlayAgain();
+
 
     }
 
@@ -257,7 +240,7 @@ public class GoFishGame extends CardGame implements Game {
 
                 if (playerOrDealer == 1)
                 {
-                    playerSet.add(hand.get(i).getCardValue());
+                    playerSet.add(cardToBeRemoved);
                     for (int j = 0; j < playerHand.size(); j++)
                     {
                         Integer cv1 = playerHand.get(j).getCardValue().getCardValue();
@@ -271,7 +254,7 @@ public class GoFishGame extends CardGame implements Game {
                 }
                 else
                 {
-                    dealerSet.add(hand.get(i).getCardValue());
+                    dealerSet.add(cardToBeRemoved);
                     for (int j = 0; j < dealerHand.size(); j++) {
                         Integer cv1 = dealerHand.get(j).getCardValue().getCardValue();
 
@@ -380,6 +363,7 @@ public class GoFishGame extends CardGame implements Game {
         for(int i=0; i<playerSet.size(); i++)
         {
             sb1.append(playerSet.get(i));
+            sb1.append(" ");
         }
         sb1.append("]\n");
         console.println(sb1.toString());
@@ -389,12 +373,40 @@ public class GoFishGame extends CardGame implements Game {
         for(int i=0; i<dealerSet.size(); i++)
         {
             sb2.append(dealerSet.get(i));
+            sb2.append(" ");
         }
         sb2.append("]\n");
         console.println(sb2.toString());
 
     }
 
+    public void promptToPlayAgain() {
+        Integer input = console.getIntegerInput("PLAY AGAIN?\n1. YES\n2. NO");
+        playAgainActions(input);
+    }
 
+    public void playAgainActions(Integer input) {
+        switch (input) {
+            case 1:
+                determineWin();
+            case 2:
+                Lobby lobby = new Lobby();
+                lobby.selectGameMenu(player);
+        }
+    }
+
+    public void distributeCards()
+    {
+        for(int i = 0; i<7; i++)
+        {
+            Card card;
+
+            card = stock.drawCard();
+            playerHand.add(card );
+
+            card = stock.drawCard();
+            dealerHand.add(card);
+        }
+    }
 
 }

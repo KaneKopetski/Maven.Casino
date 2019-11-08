@@ -1,4 +1,4 @@
-package io.zipcoder.casino.Hands;
+package models.hands;
 
 import models.hands.KlondikeDealerHand;
 import models.hands.KlondikeHand;

@@ -3,8 +3,6 @@ package models.people.dealers;
 import models.gamecomponents.Card;
 import models.gamecomponents.DeckOfCards;
 import models.hands.GoFishHand;
-import models.people.players.GoFishPlayer;
-import models.people.players.Player;
 
 
 public class GoFishDealer extends Dealer {
