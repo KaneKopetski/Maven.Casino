@@ -118,7 +118,7 @@ public class Lobby {
             case 3:
                 //dealer = new Dealer();
                 KlondikeDealer klondikeDealer = new KlondikeDealer(firstName, lastName, balance);
-                KlondikeGame klondikeGame = new KlondikeGame(player, klondikeDealer);
+                KlondikeGame klondikeGame = new KlondikeGame(player);
                 klondikeGame.getMenu();
                 break;
             case 4:

@@ -4,15 +4,25 @@ import Interfaces.GamblingGame;
 import Interfaces.Game;
 import models.people.dealers.Dealer;
 import models.people.players.Player;
+import services.Console;
+import services.KlondikePrints;
 
 public class KlondikeGame extends DiceGame implements Game, GamblingGame {
     Double betAmount = 0.00;
     Double minimumBet;
     Dealer dealer;
 
+    Console console = new Console(System.in, System.out);
+    KlondikePrints klondikePrints = new KlondikePrints();
 
-    public KlondikeGame(Player player, Dealer klondikeDealer) {
+
+    public KlondikeGame(Player player) {
         this.player = player;
+    }
+
+    public void welcome() {
+        console.println(klondikePrints.klondikeWelcome());
+        //console.getIntegerInput();
     }
 
     public String dealerRoll() {

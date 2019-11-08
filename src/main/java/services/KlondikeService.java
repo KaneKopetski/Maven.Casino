@@ -8,18 +8,17 @@ public class KlondikeService {
     private DiceService dice = new DiceService();
 
     public ArrayList<Integer> rollDiceFiveTimes(){
-
         ArrayList<Integer> rolls = new ArrayList<>();
 
         for(int i = 0; i < 5; i++) {
-            rolls.add(dice.rollDice());
+            //rolls.add(dice.rollDice());
         }
         return rolls;
     }
 
     public Integer onePair(ArrayList<Integer> dice) {
         Collections.sort(dice);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             if(dice.get(i).equals(dice.get(i + 1)))
                 return 1;
         }
@@ -31,14 +30,14 @@ public class KlondikeService {
         Integer pair1 = 0, pair2 = 0;
 
         // First Loop looks for the first pair going -> through the arraylist
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             if(dice.get(i).equals(dice.get(i + 1))) {
                 pair1 = dice.get(i);
                 break;
             }
         }
         // Second Loop looks for the first pair going <- through the arraylist
-        for (int j = 5; j > 0; j--) {
+        for (int j = 4; j > 0; j--) {
             if(dice.get(j).equals(dice.get(j - 1))) {
                 pair2 = dice.get(j);
                 break;
@@ -54,7 +53,7 @@ public class KlondikeService {
 
     public Integer threeOfAKind(ArrayList<Integer> dice) {
         Collections.sort(dice);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             //  Checking if dice[i] == dice[i + 1] == dice[i + 2]
             if(dice.get(i).equals(dice.get(i + 1)) && dice.get(i).equals(dice.get(i + 2)))
                 return 3;
@@ -71,7 +70,7 @@ public class KlondikeService {
 
     public Integer fourOfAKind(ArrayList<Integer> dice) {
         Collections.sort(dice);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             //  Checking if dice[i] == dice[i + 1] == dice[i + 2] == dice[i + 3]
             if(dice.get(i).equals(dice.get(i + 1)) && dice.get(i).equals(dice.get(i + 2)) && dice.get(i).equals(dice.get(i + 3)))
                 return 5;
@@ -81,11 +80,30 @@ public class KlondikeService {
 
     public Integer fiveOfAKind(ArrayList<Integer> dice) {
         Collections.sort(dice);
+        Integer counter = 0;
         // If the dice[0] doesn't equal any of the other values in dice then return false
-        for (int i = 1; i < 6; i++) {
-            if (!dice.get(0).equals(dice.get(i)))
-                return 6;
+        for (int i = 1; i < 5; i++) {
+            if (dice.get(0).equals(dice.get(i)))
+                counter++;
         }
+        if(counter == 4)
+            return 6;
+        return 0;
+    }
+
+    public Integer bestHand(ArrayList<Integer> dice) {
+        if (fiveOfAKind(dice) == 6)
+            return 6;
+        if (fourOfAKind(dice) == 5)
+            return 5;
+        if (fullHouse(dice) == 4)
+            return 4;
+        if (threeOfAKind(dice) == 3)
+            return 3;
+        if (twoPair(dice) == 2)
+            return 2;
+        if (onePair(dice) == 1)
+            return 1;
         return 0;
     }
 

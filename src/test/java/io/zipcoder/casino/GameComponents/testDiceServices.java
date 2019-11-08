@@ -16,17 +16,9 @@ public class testDiceServices {
         public void rollDiceTest(){
     Dice dice=new Dice();
     DiceService diceService = new DiceService();
+
     int actual= diceService.rollDice();
    // System.out.println(actual);
-}
-@Test
-    public void addToHandTest(){
-    Dice dice = new Dice();
-    DiceService diceService = new DiceService();
-    int valueOfDice=diceService.rollDice();
-    KlondikeHand hand = new KlondikeHand();
-     boolean actual =diceService.addToHand(dice , valueOfDice ,hand );
-    Assert.assertEquals(true,actual);
 }
 
 
