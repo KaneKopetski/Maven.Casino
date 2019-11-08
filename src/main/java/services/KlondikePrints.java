@@ -41,6 +41,13 @@ public class KlondikePrints {
                 "4. Money bet will be doubled if player wins.\n\n";
     }
 
+    public String dealerRolls() {
+        return
+                "  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ \n" +
+                " ( D | e | a | l | e | r | ' | s ) ( R | o | l | l )\n" +
+                "  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ ";
+    }
+
     public ArrayList<String> printDice(ArrayList<Integer> dice) {
         ArrayList<String> diceArt = new ArrayList<>();
 

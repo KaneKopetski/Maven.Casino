@@ -23,6 +23,20 @@ public class TestKlondikePrints {
     }
 
     @Test
+    public void testAskInstructions() {
+        Integer test = klondikePrints.askInstructions().length();
+        System.out.println(klondikePrints.askInstructions());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testDealersRolls() {
+        Integer test = klondikePrints.dealerRolls().length();
+        System.out.println(klondikePrints.dealerRolls());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
     public void testPrintDice() {
         ArrayList<Integer> rolls = new ArrayList<>();
         rolls.add(1);
