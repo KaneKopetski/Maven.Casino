@@ -7,13 +7,13 @@ import java.util.TreeMap;
 
 public class KlondikeHand extends Hand {
 
-    private Integer playersPoint;
+    private ArrayList<Integer> playersRoll;
 
-    public Integer getPlayersPoint() {
-        return playersPoint;
+    public ArrayList<Integer> getPlayersRoll() {
+        return this.playersRoll;
     }
 
-    public void setPlayersPoint(Integer playersPoint) {
-        this.playersPoint = playersPoint;
+    public void setPlayersRoll(ArrayList<Integer> playersRoll) {
+        this.playersRoll = playersRoll;
     }
 }

@@ -12,14 +12,4 @@ import services.DiceService;
 
 public class testDiceServices {
 
-@Test
-        public void rollDiceTest(){
-    Dice dice=new Dice();
-    DiceService diceService = new DiceService();
-
-    int actual= diceService.rollDice();
-   // System.out.println(actual);
-}
-
-
 }

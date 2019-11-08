@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class TestKlondikePrints {
 
-    KlondikePrints klondikePrints = new KlondikePrints();
+    private KlondikePrints klondikePrints = new KlondikePrints();
 
     @Test
     public void testKlondikeWelcome() {
@@ -19,6 +19,48 @@ public class TestKlondikePrints {
     @Test
     public void testDisplayInstructions() {
         Integer test = klondikePrints.displayInstructions().length();
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testAskInstructions() {
+        Integer test = klondikePrints.askInstructions().length();
+        System.out.println(klondikePrints.askInstructions());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testDealersRolls() {
+        Integer test = klondikePrints.dealerRolls().length();
+        System.out.println(klondikePrints.dealerRolls());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testPlayerRolls() {
+        Integer test = klondikePrints.playerRolls().length();
+        System.out.println(klondikePrints.playerRolls());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testAsksBetAmount() {
+        Integer test = klondikePrints.asksBetAmount().length();
+        System.out.println(klondikePrints.asksBetAmount());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testWin() {
+        Integer test = klondikePrints.win().length();
+        System.out.println(klondikePrints.win());
+        Assert.assertNotEquals(0, (int) test);
+    }
+
+    @Test
+    public void testLose() {
+        Integer test = klondikePrints.lose().length();
+        System.out.println(klondikePrints.lose());
         Assert.assertNotEquals(0, (int) test);
     }
 

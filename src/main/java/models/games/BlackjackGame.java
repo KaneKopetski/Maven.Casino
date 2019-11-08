@@ -29,7 +29,6 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
     Integer dealerHandValue = 0;
     Lobby lobby = new Lobby();
     PlayerService playerServices;
-    //Console console = new Console(); //Do we need this?
 
 
     public BlackjackGame(Player player){
@@ -276,7 +275,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
                 startGame();
                 break;
             default:
-                lobby.selectGameMenu();
+                lobby.selectGameMenu(player);
                 break;
         }
     }
@@ -315,7 +314,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
                 startGame();
                 break;
             case 2:
-                lobby.selectGameMenu();
+                lobby.selectGameMenu(player);
                 break;
             default:
                 printInvalidSelectMessage();
@@ -376,7 +375,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
             return true;
         } else if(betAmount < playerServices.getBalance(this.player)) {
             printBetCheck();
-            lobby.selectGameMenu();
+            lobby.selectGameMenu(player);
             return false;
         } else {
             printMinimumBetMessage();
@@ -449,7 +448,7 @@ public class BlackjackGame extends CardGame implements Game, GamblingGame {
 
     public void leaveGame() {
         printThanksForPlay();
-        lobby.selectGameMenu();
+        lobby.selectGameMenu(player);
     }
 
 
