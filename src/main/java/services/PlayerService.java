@@ -1,68 +1,29 @@
 package services;
 
-import models.hands.Hand;
 import models.people.players.Player;
 
-
 public class PlayerService {
-     Player player1 = new Player();
-     Double balance;
 
-    public PlayerService(Player player1) {
-        this.player1 = player1;
-        balance = 0.0;
-    }
+     public PlayerService() {
+     }
 
     public Double getBalance(Player player) {
-        return balance;
+        return player.getBalance();
     }
 
     public Double depositMoney(Double depositAmt, Player player) {
-        balance = player1.getBalance();
-        balance += depositAmt;
-
+        Double balance = player.getBalance();
+        Double newBalance = balance + depositAmt;
+        player.setBalance(newBalance);
         return balance;
     }
 
     public Double withdrawMoney(Double withdrawAmt, Player player) {
-        balance = player1.getBalance();
-        balance -= withdrawAmt;
-
-        return balance;
+        Double balance = player.getBalance();
+        Double newBalance = balance - withdrawAmt;
+        player.setBalance(newBalance);
+        return newBalance;
     }
-
-    public  Double getBalance2(Player player) {
-
-        return balance;
-    }
-
-    public  Double depositMoney(Double depositAmt) {
-
-        balance = player1.getBalance();
-        balance += depositAmt;
-
-        return balance;
-    }
-
-    public  Double withdrawMoney(Double withdrawAmt) {
-
-        balance = player1.getBalance();
-        balance -= withdrawAmt;
-
-        return balance;
-    }
-
-    public Hand resetPlayerHands(Player player) {
-        return  null;
-
-    }
-
-    public Integer getId() {
-        return null;
-    }
-
-
-
 
 
 }

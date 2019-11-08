@@ -12,11 +12,11 @@ public class CrapsPlayer implements GamblingPlayer {
     public CrapsPlayer(Player player) {
         this.crapsPlayer = player;
         betAmount = 1.0;
-        ps = new PlayerService(crapsPlayer);
+        ps = new PlayerService();
     }
 
     public Double placeBet() {
-        Double balanceAfterPlacingBet = ps.depositMoney( betAmount);
+        Double balanceAfterPlacingBet = ps.depositMoney(betAmount, crapsPlayer);
         return balanceAfterPlacingBet;
     }
 

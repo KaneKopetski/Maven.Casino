@@ -16,7 +16,7 @@ public class GoFishPlayer extends Player {
 
         this.goFishPlayer = player;
         betAmount = 1.0;
-        ps = new PlayerService(goFishPlayer);
+        ps = new PlayerService();
     }
 
 
