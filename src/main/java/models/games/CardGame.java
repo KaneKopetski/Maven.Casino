@@ -33,8 +33,8 @@ abstract class CardGame {
     }
 
     public void quitGame() {
-        Lobby lobby = new Lobby();
-        lobby.selectGameMenu(player);
+        Lobby lobby = new Lobby(playerRepo, player);
+        lobby.selectGameMenu();
     }
 
 

@@ -20,8 +20,11 @@ public class Lobby {
         this.playerRepo = playerRepo;
     }
 
-    public Lobby(){
+    public Lobby(PlayerRepo playerRepo, Player player){
+        this.playerRepo = playerRepo;
+        this.player = player;
     }
+
 
     public Integer intro() {
         console.print("      ___           ___           ___           ___                    ___           ___           ___           ___              \n" +
@@ -74,7 +77,7 @@ public class Lobby {
         playerService.depositMoney(input, player);
         console.print("Here you go!\n");
         console.print("Your current balance is " + player.getBalance() + ".");
-        selectGameMenu(player);
+        selectGameMenu();
         return input;
     }
 
@@ -89,10 +92,10 @@ public class Lobby {
             case 1:
                 Double depositAmt = promptForDepositAmount();
                 addToBalance(depositAmt);
-                selectGameMenu(player);
+                selectGameMenu();
                 break;
             case 2:
-                selectGameMenu(player);
+                selectGameMenu();
                 break;
             default:
                 invalidSelectionMessage();
@@ -110,7 +113,7 @@ public class Lobby {
         player.setBalance(newBalance);
     }
 
-    public void selectGameMenu(Player player) {
+    public void selectGameMenu() {
         Integer input = console.getIntegerInput(
                 "\nHere are the available games:\n\n" +
                         "1. BlackJack\n" +
@@ -125,7 +128,7 @@ public class Lobby {
     private void menuActions(Integer input) {
         switch (input) {
             case 1:
-                BlackjackGame blackjackGame = new BlackjackGame(player);
+                BlackjackGame blackjackGame = new BlackjackGame(player, playerRepo);
                 blackjackGame.playGame();
                 break;
             case 2:
@@ -134,7 +137,7 @@ public class Lobby {
                 break;
             case 3:
                 KlondikePlayer klondikePlayer = new KlondikePlayer(player);
-                KlondikeGame klondikeGame = new KlondikeGame(klondikePlayer);
+                KlondikeGame klondikeGame = new KlondikeGame(klondikePlayer, playerRepo);
                 klondikeGame.klondikeMenu();
                 break;
             case 4:
@@ -146,7 +149,7 @@ public class Lobby {
                 break;
             default:
                 invalidSelectionMessage();
-                selectGameMenu(player);
+                selectGameMenu();
                 break;
         }
     }

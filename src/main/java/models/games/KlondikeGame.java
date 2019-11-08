@@ -9,10 +9,7 @@ import models.people.dealers.Dealer;
 import models.people.dealers.KlondikeDealer;
 import models.people.players.KlondikePlayer;
 import models.people.players.Player;
-import services.Console;
-import services.KlondikePrints;
-import services.KlondikeService;
-import services.PlayerService;
+import services.*;
 
 import java.util.ArrayList;
 
@@ -27,9 +24,11 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
     private KlondikeHand klondikeHand = new KlondikeHand();
     private KlondikeService klondikeService = new KlondikeService();
     private PlayerService playerService = new PlayerService();
+    private PlayerRepo playerRepo;
 
-    public KlondikeGame(Player player) {
-        this.player = player;
+    public KlondikeGame(KlondikePlayer player, PlayerRepo playerRepo) {
+        this.klondikePlayer = player;
+        this.playerRepo = playerRepo;
     }
 
     public void klondikeMenu() {
@@ -61,8 +60,8 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
         if(choice2 == 1) {
             playGame();
         } else {
-            Lobby lobby = new Lobby();
-            lobby.selectGameMenu(player);
+            Lobby lobby = new Lobby(playerRepo, player);
+            lobby.selectGameMenu();
         }
     }
 
