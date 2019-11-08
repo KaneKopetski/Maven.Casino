@@ -26,8 +26,14 @@ public class Lobby {
     }
 
 
-    public Integer intro() {
-        console.print("      ___           ___           ___           ___                    ___           ___           ___           ___              \n" +
+    public void intro() {
+        console.print(introMessage());
+        Integer input = console.getIntegerInput(introPrompt());
+        checkInMenu(input);
+    }
+
+    public String introMessage() {
+        String message = "      ___           ___           ___           ___                    ___           ___           ___           ___              \n" +
                 "     /\\__\\         /\\  \\         /\\  \\         /\\  \\                  /\\  \\         /\\  \\         /\\  \\         /\\  \\             \n" +
                 "    /:/  /        /::\\  \\       /::\\  \\       /::\\  \\                /::\\  \\       /::\\  \\       /::\\  \\       /::\\  \\            \n" +
                 "   /:/__/        /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\              /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\           \n" +
@@ -38,32 +44,58 @@ public class Lobby {
                 "      /:/  /        /:/  /      |:|\\/__/     \\:\\/:/  /              \\:\\  \\        \\:\\/:/  /     \\:\\/:/  /     \\:\\ \\/__/           \n" +
                 "     /:/  /        /:/  /       |:|  |        \\::/__/                \\:\\__\\        \\::/  /       \\::/__/       \\:\\__\\             \n" +
                 "     \\/__/         \\/__/         \\|__|         ~~                     \\/__/         \\/__/         ~~            \\/__/             \n" +
-                "                                                                                                                                  \n");
+                "                                                                                                                                  \n";
+        return message;
+    }
 
-
-
-        Integer input = console.getIntegerInput("Hello and welcome to the Casino. Have you been here before?\n" +
+    public String introPrompt() {
+        String prompt = "Hello and welcome to the Hard Code Casino. Have you been here before?\n" +
                 "1. Yes\n" +
-                "2. No");
-        checkInMenu(input);
-        return input;
+                "2. No";
+        return prompt;
+    }
+
+    public String promptForAccountId() {
+        String prompt = "Great! What is your account ID?";
+        return prompt;
+    }
+
+    public String foundAccountMessage() {
+        String message = "I have found your profile.";
+        return message;
+    }
+
+    public String namePrompt() {
+        String prompt = "What is your name?";
+        return prompt;
+    }
+
+    public String agePrompt() {
+        String prompt = "How old are you?";
+        return prompt;
+    }
+
+    public String accountIdMessage() {
+        String message = "Your account has been created. The ID is: " + player.getId() + "\n";
+        return message;
     }
 
     public Player checkInMenu(Integer input) {
         switch (input) {
             case 1:
-                Integer playerId = console.getIntegerInput("Great! What is your account ID?");
+                Integer playerId = console.getIntegerInput(promptForAccountId());
                 player = playerRepo.getPlayerById(playerId);
-                console.print("I have found your profile. Your current balance is: " + player.getBalance());
+                console.print(foundAccountMessage());
+                console.print(printBalanceMessage());
                 updateChips();
                 break;
             case 2:
-                String name = console.getStringInput("What is your name?");
-                Integer age = console.getIntegerInput("How old are you?");
+                String name = console.getStringInput(namePrompt());
+                Integer age = console.getIntegerInput(agePrompt());
                 Player newPlayer = new Player(name, age);
                 playerRepo.addPlayer(newPlayer);
                 player = newPlayer;
-                console.print("Your account has been created. The ID is: " + player.getId() + "\n");
+                console.print(accountIdMessage());
                 getChips();
             default:
                 invalidSelectionMessage();
@@ -72,19 +104,31 @@ public class Lobby {
         } return player;
     }
 
-    public Double getChips() {
-        Double input = console.getDoubleInput("How much money would you like to play with?");
-        playerService.depositMoney(input, player);
-        console.print("Here you go!\n");
-        console.print("Your current balance is " + player.getBalance() + ".");
-        selectGameMenu();
-        return input;
+    public String getChipsPrompt() {
+        String prompt = "How much money would you like to play with?";
+        return prompt;
     }
 
-    public Integer updateChips() {
-        Integer input = console.getIntegerInput("Would you like to add more to your balance\n1. Yes\n2. No");
+    public String printBalanceMessage() {
+        String message = "Your current balance is " + player.getBalance() + ".";
+        return message;
+    }
+
+    public void getChips() {
+        Double input = console.getDoubleInput(getChipsPrompt());
+        playerService.depositMoney(input, player);
+        console.print(printBalanceMessage());
+        selectGameMenu();
+    }
+
+    public String updateChipsPrompt() {
+        String prompt = "Would you like to add more to your balance\n1. Yes\n2. No";
+        return prompt;
+    }
+
+    public void updateChips() {
+        Integer input = console.getIntegerInput(updateChipsPrompt());
         updateChipsActions(input);
-        return input;
     }
 
     public void updateChipsActions(Integer input) {
@@ -113,15 +157,19 @@ public class Lobby {
         player.setBalance(newBalance);
     }
 
-    public void selectGameMenu() {
-        Integer input = console.getIntegerInput(
-                "\nHere are the available games:\n\n" +
-                        "1. BlackJack\n" +
-                        "2. Go Fish\n" +
-                        "3. Klondike\n" +
-                        "4. Craps\n" +
-                        "5. Exit the Casino\n");
+    public String selectGamePrompt() {
+        String prompt = "\nHere are the available games:\n\n" +
+                "1. BlackJack\n" +
+                "2. Go Fish\n" +
+                "3. Klondike\n" +
+                "4. Craps\n" +
+                "5. Logout" +
+                "6. Exit the Casino\n";
+        return prompt;
+    }
 
+    public void selectGameMenu() {
+        Integer input = console.getIntegerInput(selectGamePrompt());
         menuActions(input);
     }
 
@@ -145,6 +193,9 @@ public class Lobby {
                 crapsGame.determineWin();
                 break;
             case 5:
+                intro();
+                break;
+            case 6:
                 leaveCasino();
                 break;
             default:
@@ -160,6 +211,7 @@ public class Lobby {
         return message;
 
     }
+
 
     public void leaveCasino() {
         console.print(("Bye!"));
