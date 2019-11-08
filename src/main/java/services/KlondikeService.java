@@ -11,7 +11,7 @@ public class KlondikeService {
         ArrayList<Integer> rolls = new ArrayList<>();
 
         for(int i = 0; i < 5; i++) {
-            //rolls.add(dice.rollDice());
+            rolls.add(dice.rollDice());
         }
         return rolls;
     }

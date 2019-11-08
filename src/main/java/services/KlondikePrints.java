@@ -42,13 +42,13 @@ public class KlondikePrints {
         for(int i = 0; i < dice.size(); i++) {
             switch (dice.get(i)) {
                 case 1:
-                    diceArt.add( " ,------------,\n" +
-                                "  |            |\n" +
-                                "  |            |\n" +
-                                "  |     ██     |\n" +
-                                "  |            |\n" +
-                                "  |            |\n" +
-                                "  '------------'\n");
+                    diceArt.add( "\n ,------------,\n" +
+                                  "  |            |\n" +
+                                  "  |            |\n" +
+                                  "  |     ██     |\n" +
+                                  "  |            |\n" +
+                                  "  |            |\n" +
+                                  "  '------------'\n");
                     break;
                 case 2:
                     diceArt.add(  ",------------,\n" +
