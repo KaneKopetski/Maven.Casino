@@ -186,9 +186,7 @@ public class BlackjackGameTest {
 
     @Test
     public void printgotBJPlayerTest() {
-        Assert.assertEquals("\nYou bust!\n\n", blackjackGame.printgotBJPlayer());
-
-
+        Assert.assertEquals("\nAyeee, You got BlackJack!\n\n", blackjackGame.printgotBJPlayer());
     }
 
 }
