@@ -6,13 +6,13 @@ public class KlondikeDealerHand {
 
     //TODO: this should store what the dealers hand for Klondike is so that it can be compared to the players
 
-    private ArrayList<Integer> dealersPoint;
+    private ArrayList<Integer> dealersRoll;
 
-    public ArrayList<Integer> getDealersPoint() {
-        return dealersPoint;
+    public ArrayList<Integer> getDealersRoll() {
+        return this.dealersRoll;
     }
 
-    public void setDealersPoint(ArrayList<Integer> dealersPoint) {
-        this.dealersPoint = dealersPoint;
+    public void setDealersRoll(ArrayList<Integer> dealersRoll) {
+        this.dealersRoll = dealersRoll;
     }
 }

@@ -7,7 +7,7 @@ public class KlondikePrints {
 
     public String klondikeWelcome() {
         return
-                "****************************************************************" +
+                "****************************************************************\n" +
                 "Welcome to:\n" +
                 " ██╗  ██╗██╗      ██████╗ ███╗   ██╗██████╗ ██╗██╗  ██╗███████╗\n" +
                 " ██║ ██╔╝██║     ██╔═══██╗████╗  ██║██╔══██╗██║██║ ██╔╝██╔════╝\n" +
@@ -46,6 +46,31 @@ public class KlondikePrints {
                 "  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ \n" +
                 " ( D | e | a | l | e | r | ' | s ) ( R | o | l | l )\n" +
                 "  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ ";
+    }
+
+    public String playerRolls() {
+        return
+                "  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ \n" +
+                " ( P | l | a | y | e | r | ' | s ) ( R | o | l | l )\n" +
+                "  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ ";
+    }
+
+    public String asksBetAmount() {
+        return "Feeling lucky?  How much you wanna bet?";
+    }
+
+    public String win() {
+        return
+                "  / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ \n" +
+                " ( Y | O | U ) ( W | I | N | ! | ! )\n" +
+                "  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ ";
+    }
+
+    public String lose() {
+        return
+                "  / \\ / \\ / \\   / \\ / \\ / \\ / \\ \n" +
+                " ( Y | o | u ) ( l | o | s | t )\n" +
+                "  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ ";
     }
 
     public ArrayList<String> printDice(ArrayList<Integer> dice) {
@@ -110,5 +135,19 @@ public class KlondikePrints {
             }
         }
         return diceArt;
+    }
+
+    public String playAgain() {
+        return  "Would you like to play again?\n" +
+                "1. Another round\n" +
+                "2. Lets go for another game\n";
+    }
+
+    public String anotherRound() {
+        return "Let's GO!";
+    }
+
+    public String differentGame() {
+        return "Thanks for playing Klondike!";
     }
 }
