@@ -6,6 +6,7 @@ import models.gamecomponents.Card;
 import models.gamecomponents.CardValue;
 import models.gamecomponents.DeckOfCards;
 import models.people.players.Player;
+import services.PlayerRepo;
 
 
 import java.util.ArrayList;
@@ -390,8 +391,8 @@ public class GoFishGame extends CardGame implements Game {
             case 1:
                 determineWin();
             case 2:
-                Lobby lobby = new Lobby();
-                lobby.selectGameMenu(player);
+                Lobby lobby = new Lobby(playerRepo);
+                lobby.selectGameMenu();
         }
     }
 
