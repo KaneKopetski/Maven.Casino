@@ -23,12 +23,12 @@ public class GoFishGame extends CardGame implements Game {
     private ArrayList<CardValue> dealerSet = new ArrayList<>();
 
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         Player player = new Player();
         GoFishGame goFishGame = new GoFishGame(player);
         goFishGame.getMenu();
     }
-
+*/
    public GoFishGame(Player player)
     {
         this.player = player;
