@@ -1,7 +1,7 @@
 package services;
 
-import models.gamecomponents.Dice;
-import models.hands.KlondikeHand;
+import io.zipcoder.casino.gamecomponents.Dice;
+
 import java.util.Random;
 
 public class DiceService {

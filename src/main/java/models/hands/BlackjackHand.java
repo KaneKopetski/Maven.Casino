@@ -1,7 +1,7 @@
 package models.hands;
 
-import models.gamecomponents.Card;
-import models.gamecomponents.CardValue;
+import io.zipcoder.casino.gamecomponents.Card;
+import io.zipcoder.casino.gamecomponents.CardValue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

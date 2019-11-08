@@ -1,10 +1,8 @@
 package models.people.dealers;
 
-import models.gamecomponents.Card;
-import models.gamecomponents.DeckOfCards;
+import io.zipcoder.casino.gamecomponents.Card;
+import io.zipcoder.casino.gamecomponents.DeckOfCards;
 import models.hands.GoFishHand;
-import models.people.players.GoFishPlayer;
-import models.people.players.Player;
 
 
 public class GoFishDealer extends Dealer {

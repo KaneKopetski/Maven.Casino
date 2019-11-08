@@ -1,6 +1,6 @@
 package models.people.players;
 
-import models.gamecomponents.Card;
+import io.zipcoder.casino.gamecomponents.Card;
 import models.hands.GoFishHand;
 import services.PlayerService;
 import services.Console;

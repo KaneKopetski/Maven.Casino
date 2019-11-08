@@ -1,9 +1,9 @@
 package models.games;
 
 import Interfaces.Game;
-import models.gamecomponents.Card;
-import models.gamecomponents.CardValue;
-import models.gamecomponents.DeckOfCards;
+import io.zipcoder.casino.gamecomponents.Card;
+import io.zipcoder.casino.gamecomponents.CardValue;
+import io.zipcoder.casino.gamecomponents.DeckOfCards;
 import models.people.players.Player;
 
 

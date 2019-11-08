@@ -1,9 +1,6 @@
 package models.hands;
 
-import models.gamecomponents.Dice;
-
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class KlondikeHand extends Hand {
 

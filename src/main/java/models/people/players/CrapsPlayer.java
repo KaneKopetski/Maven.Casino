@@ -1,7 +1,7 @@
 package models.people.players;
 
 import Interfaces.GamblingPlayer;
-import models.gamecomponents.Dice;
+import io.zipcoder.casino.gamecomponents.Dice;
 import services.PlayerService;
 
 public class CrapsPlayer implements GamblingPlayer {

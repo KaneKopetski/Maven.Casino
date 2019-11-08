@@ -3,7 +3,7 @@ package models.games;
 import Interfaces.GamblingGame;
 import Interfaces.Game;
 import models.Lobby;
-import models.gamecomponents.Dice;
+import io.zipcoder.casino.gamecomponents.Dice;
 import models.people.players.Player;
 import services.Console;
 import services.DiceService;

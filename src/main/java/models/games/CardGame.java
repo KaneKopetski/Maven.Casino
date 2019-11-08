@@ -1,7 +1,7 @@
 package models.games;
 
 import models.Lobby;
-import models.gamecomponents.DeckOfCards;
+import io.zipcoder.casino.gamecomponents.DeckOfCards;
 import models.people.dealers.Dealer;
 import models.people.players.Player;
 import services.Console;
