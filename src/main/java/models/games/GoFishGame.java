@@ -390,8 +390,8 @@ public class GoFishGame extends CardGame implements Game {
             case 1:
                 determineWin();
             case 2:
-                Lobby lobby = new Lobby();
-                lobby.selectGameMenu(player);
+                Lobby lobby = new Lobby(player, playerRepo);
+                lobby.selectGameMenu();
         }
     }
 

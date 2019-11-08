@@ -103,18 +103,18 @@ public class BlackjackGameTest {
 
     @Test
     public void printDealerTurnTest() {
-    Card card = blackjackGame.dealerHit();
-    Integer dealerHandValue = blackjackGame.getDealerHandValue();
+        Card card = blackjackGame.dealerHit();
+        Integer dealerHandValue = blackjackGame.getDealerHandValue();
 
-    String expected = "Dealer's hand total:  " + dealerHandValue + "\n";
-    String actual = blackjackGame.printDealerTurn();
+        String expected = "Dealer's hand total:  " + dealerHandValue + "\n";
+        String actual = blackjackGame.printDealerTurn();
 
-    Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void playerStayTest() {
-    Assert.assertTrue(blackjackGame.playerStay());
+        Assert.assertTrue(blackjackGame.playerStay());
     }
 
 //    @Test
@@ -131,12 +131,12 @@ public class BlackjackGameTest {
 
     @Test
     public void printPlayerWinTest() {
-        Assert.assertEquals("\nYou win!\n\n",blackjackGame.printPlayerWin());
+        Assert.assertEquals("\nYou win!\n\n", blackjackGame.printPlayerWin());
     }
 
     @Test
     public void printPlayerLoseTest() {
-        Assert.assertEquals("\nYou lose!\n\n",blackjackGame.printPlayerLose());
+        Assert.assertEquals("\nYou lose!\n\n", blackjackGame.printPlayerLose());
     }
 
     @Test
@@ -156,22 +156,18 @@ public class BlackjackGameTest {
         Assert.assertEquals("You're broke. Get some more money.", blackjackGame.printBetCheck());
     }
 
-    public void printMinimumBetMessage(){
-        //Assert.assertEquals("Total in your hand: " + value + "\n", blackjackGame.printPlayerHandValue(value));
-    }
-
     @Test
-    public void printMinimumBetMessageTest(){
+    public void printMinimumBetMessageTest() {
         Assert.assertEquals("Minimum bet is $5.0. Please try again.", blackjackGame.printMinimumBetMessage());
     }
 
     @Test
-    public void printInvalidSelectMessageTest(){
+    public void printInvalidSelectMessageTest() {
         Assert.assertEquals("Invalid selection please try again.\n", blackjackGame.printInvalidSelectMessage());
     }
 
     @Test
-    public void printThanksForPlayTest(){
+    public void printThanksForPlayTest() {
         Assert.assertEquals("Thanks for playing Blackjack!\n", blackjackGame.printThanksForPlay());
     }
 
@@ -184,15 +180,15 @@ public class BlackjackGameTest {
 //    }
 
     @Test
-    public void printPlayerBustTest(){
+    public void printPlayerBustTest() {
         Assert.assertEquals("\nYou bust!\n\n", blackjackGame.printPlayerBust());
     }
 
     @Test
-    public String printgotBJPlayerTest() {
+    public void printgotBJPlayerTest() {
         Assert.assertEquals("\nYou bust!\n\n", blackjackGame.printgotBJPlayer());
 
 
-
-
     }
+
+}
