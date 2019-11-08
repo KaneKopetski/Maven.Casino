@@ -24,8 +24,6 @@ public class KlondikeGame extends DiceGame implements Game, GamblingGame {
         welcome();
 
         Integer choice = instructions();
-
-
     }
 
     public void welcome() {
