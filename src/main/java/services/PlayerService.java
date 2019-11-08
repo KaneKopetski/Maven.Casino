@@ -8,13 +8,17 @@ public class PlayerService {
      Player player1 = new Player();
      Double balance;
 
+     public PlayerService() {
+
+     }
+
     public PlayerService(Player player1) {
         this.player1 = player1;
         balance = 0.0;
     }
 
     public Double getBalance(Player player) {
-        return balance;
+        return player.getBalance();
     }
 
     public Double depositMoney(Double depositAmt, Player player) {

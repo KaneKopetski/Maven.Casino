@@ -107,9 +107,6 @@ public class Lobby {
             case 1:
                 BlackjackGame blackjackGame = new BlackjackGame(player);
                 blackjackGame.playGame();
-             
-                BlackjackGame blackjackGame = new BlackjackGame(player);
-                blackjackGame.getMenu();
 
                 break;
             case 2:

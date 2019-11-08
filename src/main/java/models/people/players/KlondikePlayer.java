@@ -22,7 +22,8 @@ public class KlondikePlayer extends Player implements GamblingPlayer {
     }
 
     public Double placeBet() {
-        return PlayerService.depositMoney( betAmount);
+        return null;
+        //PlayerService.depositMoney( betAmount);
     }
 
     public ArrayList<Integer> rollDiceFiveTimes(){
